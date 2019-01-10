@@ -81,6 +81,10 @@
 </script>
 
 <style lang="scss">
+	*{
+		margin: 0;
+		padding: 0;
+	}
 	.current {
 		color: #58BC58;
 		font-weight: 600;
