@@ -85,6 +85,9 @@
 		margin: 0;
 		padding: 0;
 	}
+	ul li{
+		list-style: none;
+	}
 	.current {
 		color: #58BC58;
 		font-weight: 600;
