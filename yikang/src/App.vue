@@ -91,6 +91,9 @@
 	ul li{
 		list-style: none;
 	}
+    a{
+        text-decoration: none;
+    }
 	.current {
 		color: #58BC58;
 		font-weight: 600;
