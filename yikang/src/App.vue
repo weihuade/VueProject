@@ -85,6 +85,9 @@
 		margin: 0;
 		padding: 0;
 	}
+	body{
+		background: #FFFFFF;
+	}
 	ul li{
 		list-style: none;
 	}
