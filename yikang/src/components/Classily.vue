@@ -296,7 +296,7 @@ div{
                 display: block;
                 color: #323232;
                 height: 60px;
-                background: url(../img/classilyimg/li-bg.jpg) no-repeat;
+                background: url(../img/classily/li-bg.jpg) no-repeat;
                 background-size: auto 100%;
                 text-indent: 28px;
                 font-size: 14px;
@@ -314,7 +314,7 @@ div{
                     text-align: center;
                     height: 60px;
                     line-height: 60px;
-                    background: url(../img/classilyimg/cont-bg.jpg) no-repeat center;
+                    background: url(../img/classily/cont-bg.jpg) no-repeat center;
                     background-size: auto;
                     width: 90%;
                     margin: 0px auto;
