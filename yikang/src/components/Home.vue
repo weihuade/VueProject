@@ -11,7 +11,7 @@
 				</mt-cell>
 
 			</mt-search>
-			<div class="login">登录</div>
+			<div class="login" @click="goto('Mine')">登录</div>
 		</div>
 		<!--下一模块开始的位置-->
 		<mt-swipe :auto="4000">
@@ -389,6 +389,11 @@
 				recommend: []
 			}
 		},
+		methods:{
+			goto(name){
+				this.$router.push(name);
+			}
+		},
 		created() {
 			this.recommend = [{
 					id: 1,
@@ -413,11 +418,9 @@
 </script>
 
 <style lang="scss">
-	body {
-		background: #f2f2f2;
-	}
 	
 	.page {
+		background: #f2f2f2;
 		max-width: 640px;
 		min-width: 320px;
 		margin: 0px auto;

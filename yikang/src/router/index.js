@@ -10,6 +10,7 @@ import Reg from '@/components/Reg';
 import Cart from '@/components/Cart';
 export default new Router({
   routes: [
+   	{path:'/',component:Home},
     {name:'Home',path:'/home',component:Home},
     {name:'Classily',path:'/classily',component:Classily},
     {name:'Search',path:'/search',component:Search},
