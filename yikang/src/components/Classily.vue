@@ -23,7 +23,7 @@ body{
 .search{
     width: 100%;
     .mint-searchbar{
-        background-color: #58bc58;
+        background-color: #31c27c;
     }
 }
 </style>

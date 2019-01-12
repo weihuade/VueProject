@@ -1,5 +1,5 @@
 
-$color-primary: #05AFAF;
+$color-primary: #31c27c;
  
 .mint-header {
   background-color: $color-primary;
@@ -53,4 +53,14 @@ $color-primary: #05AFAF;
 }
 .mint-datetime-action {
   color: $color-primary;
+}
+.mint-cell-title{
+  color: #707070;
+  margin-top: 14px;
+}
+.mint-cell-value{
+  margin-top: 17px;
+}
+.mint-cell-allow-right::after{
+  margin-top: 4px;
 }

@@ -2,8 +2,8 @@
 <div id="reg">
     <div class="title">
         <mt-header title="注册">
-            <router-link to="/" slot="left">
-                <mt-button icon="back" @click="$router.back(-1)"></mt-button>
+            <router-link to="/reg" slot="left">
+                <mt-button icon="back" @click="goBack"></mt-button>
             </router-link>
         </mt-header>
     </div>
@@ -46,6 +46,11 @@ export default {
     methods:{
         createCode(){
             this.random=parseInt(Math.random()*8000+1000);
+        },
+        goBack () {
+            window.history.length > 1
+                ? this.$router.go(-1)
+                : this.$router.push('/')
         }
     },
     mounted(){
@@ -61,6 +66,7 @@ export default {
             .mycode {
                 top: 8px;
                 position: relative;
+                margin-bottom: 20px; 
                 background: #31c27c;
             }
             .random{
@@ -71,7 +77,8 @@ export default {
                 font-size: 20px;
                 line-height: 40px;
                 text-align: center;               
-                display: inline-block;                             
+                display: inline-block; 
+                margin-bottom: 10px;                            
                 border: 1px solid #ccc;
             }
         } 
