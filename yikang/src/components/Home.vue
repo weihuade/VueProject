@@ -109,13 +109,13 @@
 					<span class="ts">  距离结束        |</span>&nbsp;&nbsp;
 					<span class="time">0-11:0-26:0-11</span>
 				</div>
-				<div class="ms_more">更多&gt;</div>
+				<div class="ms_more" @click="gotomore('Homemore')">更多&gt;</div>
 			</a>
 			<div class="index_topic">
 				<ul>
 					<li>
 						<a>
-							<img src="http://img1.yaoking.cn//93/96/18/5391fdcc6fb0d3389d411a08d9822b40faf.jpg@170w_170h?1542074779#h" />
+							<img src="" />
 						</a>
 						<p class="topic_name">善存银片</p>
 						<p class="topic_price">153.80</p>
@@ -123,7 +123,7 @@
 
 					<li>
 						<a>
-							<img src="http://img1.yaoking.cn//93/96/18/5391fdcc6fb0d3389d411a08d9822b40faf.jpg@170w_170h?1542074779#h" />
+							<img src="" />
 						</a>
 						<p class="topic_name">善存银片</p>
 						<p class="topic_price">153.80</p>
@@ -131,14 +131,14 @@
 
 					<li>
 						<a>
-							<img src="http://img1.yaoking.cn//93/96/18/5391fdcc6fb0d3389d411a08d9822b40faf.jpg@170w_170h?1542074779#h" />
+							<img src="" />
 						</a>
 						<p class="topic_name">善存银片</p>
 						<p class="topic_price">153.80</p>
 					</li>
 					<li>
 						<a>
-							<img src="http://img1.yaoking.cn//93/96/18/5391fdcc6fb0d3389d411a08d9822b40faf.jpg@170w_170h?1542074779#h" />
+							<img src="" />
 						</a>
 						<p class="topic_name">善存银片</p>
 						<p class="topic_price">153.80</p>
@@ -392,6 +392,9 @@
 		methods:{
 			goto(name){
 				this.$router.push(name);
+			},
+			gotomore(name){
+				this.$router.push(name);
 			}
 		},
 		created() {
@@ -412,19 +415,27 @@
 					path: require('../img/slideshow/slideshow4.jpg')
 				},
 			]
+		},
+		mouted(){
+			
 		}
-
+		
 	}
+	
+ var myscroll=document.querySelector('.myscroll')
+ 
 </script>
 
 <style lang="scss">
-	
 	.page {
 		background: #f2f2f2;
 		max-width: 640px;
 		min-width: 320px;
 		margin: 0px auto;
 		margin-bottom: 43px;
+		overflow: scroll;
+		/*这里有问题*/
+		max-height: 626px;
 		.header {
 			width: 100%;
 			height: 52.5px;
