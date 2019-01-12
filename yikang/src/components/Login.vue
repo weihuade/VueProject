@@ -50,9 +50,9 @@ export default {
         login(){
             const self = this;
             if(self.ruleForm.phone!=='' && self.ruleForm.password!==''){
-                this.$axios.get('http://localhost:6636/user/uid=001').then(res=>{
-                    console.log(res)
-                })
+                // this.$axios.get('http://localhost:6636/user/uid=001').then(res=>{
+                //     console.log(res)
+                // })
                 MessageBox('提示', '登录成功');
                 sessionStorage.setItem('token',new Date().getTime());
                 // this.$router.push({path:'/home'});

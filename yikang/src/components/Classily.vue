@@ -282,12 +282,6 @@ html body{
     padding: 0;
     overflow: hidden;
 }
-<<<<<<< HEAD
-.search{
-    width: 100%;
-    .mint-searchbar{
-        background-color: #31c27c;
-=======
 div{
     .cateSearch {
         width: 100%;
@@ -394,7 +388,6 @@ div{
         clear:both;
         height:0;
         visibility:hidden;
->>>>>>> 9d69da496588a8a72253d78dcc2f580476f1b0fa
     }
 }
 
