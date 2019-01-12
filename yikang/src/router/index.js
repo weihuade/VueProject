@@ -15,6 +15,6 @@ export default new Router({
     {name:'Search',path:'/search',component:Search},
     {name:'Cart',path:'/cart',component:Cart},
     {name:'Mine',path:'/mine',component:Mine},
-    {name:'Reg',path:'/reg',component:Reg}
+    {name:'Reg',path:'/reg',component:Reg},
   ]
 })
