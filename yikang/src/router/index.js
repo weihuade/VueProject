@@ -71,19 +71,64 @@ router.beforeEach((to,from,next)=>{
   }
 =======
 import Home from '@/components/Home';
+<<<<<<< HEAD
+=======
+import Classily from '@/components/Classily';
+import Search from '@/components/Search';
+>>>>>>> 9d69da496588a8a72253d78dcc2f580476f1b0fa
 import Mine from '@/components/Mine';
 import Reg from '@/components/Reg';
 import Cart from '@/components/Cart';
+import Homemore from '@/components/Homemore';
+			    import Seckill from '@/components/Seckill';
+			    import Advance from '@/components/Advance';
+
+
+
+
+
 export default new Router({
   routes: [
+   	{path:'/',component:Home},
     {name:'Home',path:'/home',component:Home},
+<<<<<<< HEAD
     {name:'Mine',path:'/mine',component:Mine},
     {name:'Reg',path:'/reg',component:Reg},
     {name:'Cart',path:'/cart',component:Cart}
+=======
+    {name:'Classily',path:'/classily',component:Classily},
+    {name:'Search',path:'/search',component:Search},
+    {name:'Cart',path:'/cart',component:Cart},
+    {name:'Mine',path:'/mine',component:Mine},
+    {name:'Reg',path:'/reg',component:Reg},
+    
+    {
+//  	name:'Homemore',
+    	path:'/homemore',
+    	component:Homemore,
+    	children:[
+    		{
+    		path:'',
+    		redirect:{name:'Seckill'}
+    	},
+    	{
+    		path:'seckill',
+    		name:'Seckill',
+    		component:Seckill
+    	},{
+    		path:'advance',
+    		name:'Advance',
+    		component:Advance
+    	}
+    	]
+    },
+
+>>>>>>> 9d69da496588a8a72253d78dcc2f580476f1b0fa
   ]
 >>>>>>> Stashed changes
 })
 
+<<<<<<< HEAD
 export default router;
 
 // export default new Router({
@@ -92,3 +137,5 @@ export default router;
 
 
 
+=======
+>>>>>>> 9d69da496588a8a72253d78dcc2f580476f1b0fa
