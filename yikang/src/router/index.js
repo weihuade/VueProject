@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
+<<<<<<< Updated upstream
 //按需加载,当渲染其他页面时才加载其组件,并缓存,减少首屏加载时间
 const Home = resolve => require(['@/components/Home'],resolve)
 const Classily = resolve => require(['@/components/Classily'],resolve)
@@ -68,6 +69,19 @@ router.beforeEach((to,from,next)=>{
   }else{
       next();
   }
+=======
+import Home from '@/components/Home';
+import Mine from '@/components/Mine';
+import Reg from '@/components/Reg';
+import Cart from '@/components/Cart';
+export default new Router({
+  routes: [
+    {name:'Home',path:'/home',component:Home},
+    {name:'Mine',path:'/mine',component:Mine},
+    {name:'Reg',path:'/reg',component:Reg},
+    {name:'Cart',path:'/cart',component:Cart}
+  ]
+>>>>>>> Stashed changes
 })
 
 export default router;
