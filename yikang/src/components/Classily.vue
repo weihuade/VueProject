@@ -1,12 +1,14 @@
 <template>
     <div>
         <!-- 顶部搜索框 -->
-        <div class="search">
-        <mt-search v-model="value" cancel-text placeholder="搜索疾病，症状或药品"></mt-search>
+        <div class="cateSearch">
+        <router-link :to="{name:'Search'}">
+            <mt-search v-model="value" cancel-text autofocus placeholder="搜索疾病，症状或药品"></mt-search>
+        </router-link>
         </div>
         <div class="catesNav clearfix">
             <!-- 侧边栏 -->
-            <div class="cateList">
+            <div class="cateList" ref="listHeight">
                 <ul>
                     <li>医药馆</li>
                     <li>器械馆</li>
@@ -24,7 +26,7 @@
                 </ul>
             </div>
             <!-- 楼层 -->
-            <div class="cateCont">
+            <div class="cateCont" ref="contHeight">
                 <div class="cont-detail">
                     <div class="cont-hd">
                         <a class="cont-more" href="#">内科用药</a>
@@ -246,10 +248,31 @@
 export default {
     data() {
         return {
-        value: ""
+        value: "",
+        clientHeight:"",
         };
-    }
-};
+    },
+    mounted(){
+        this.clientHeight=`${document.documentElement.clientHeight}`
+        window.onresize=function temp(){
+            this.clientHeight=`${document.documentElement.clientHeight}`;
+        }
+    },
+    watch: {
+        // 如果 `clientHeight` 发生改变，这个函数就会运行
+        clientHeight: function () {
+            this.changeFixed(this.clientHeight)
+        }
+    },
+    methods:{
+        changeFixed(clientHeight){                        //动态修改样式
+            // console.log(clientHeight);
+            this.$refs.listHeight.style.height = clientHeight-96+ 'px';
+            this.$refs.contHeight.style.height = clientHeight-96+ 'px';
+            // console.log(this.$refs);
+        },
+    },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -260,7 +283,7 @@ html body{
     overflow: hidden;
 }
 div{
-    .search {
+    .cateSearch {
         width: 100%;
         height: 53px;
         position:fixed;
@@ -285,7 +308,7 @@ div{
         .cateList{
             float: left;
             width: 35%;
-            height: 570px;
+            // height: 570px;
             overflow-y: auto;
             background-color: #fafafa;
             display: block;
@@ -305,7 +328,7 @@ div{
         .cateCont{
             float: left;
             width: 65%;
-            height: 570px;
+            // height: 570px;
             overflow-y: auto;
             display: block;
             background-color: #ffffff;
@@ -342,7 +365,6 @@ div{
                                 width: 50px;
                                 height: 50px;
                                 border-radius: 50%;
-                                background: red;
                             } 
                             span{
                                 width: 100%;
