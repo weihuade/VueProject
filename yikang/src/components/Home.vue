@@ -1,5 +1,5 @@
 <template>
-	<div class="page">
+	<div class="page" ref="listHeight">
 		<div class="header">
 			<div class="pic">
 				<img src="../img/homeimg/logonew.png" />
@@ -310,7 +310,7 @@
 
 		<div class="neir_sy">
 			<ul class="c-fix">
-				
+
 				<li class="yaoking-goods">
 					<a>
 						<div class="goods-pic">
@@ -324,7 +324,7 @@
 						</p>
 					</a>
 				</li>
-				
+
 				<li class="yaoking-goods">
 					<a>
 						<div class="goods-pic">
@@ -367,16 +367,20 @@
 			</ul>
 
 		</div>
-<div class="member_data_foot">
-        <div style="width: 186px;margin: 0px auto; height: 30px;display:none;">
-            <div class="load_left" style="width: auto;"><a href="//www.wandoujia.com/apps/cn.yaoking" target="_blank"><img src="//www.yaoking.cn/wap_themes/yaoking_new/images/xiazai.png"></a></div>
-            <div class="load_right" style="width: auto;"><a href="//www.wandoujia.com/apps/cn.yaoking" target="_blank">下载【怡康到家】手机app</a></div>
-        </div>
-        <div style="clear: both"></div>
-        <p>怡康医药全国免费专线400-799-9120</p>
-        <p>药品交易资格证：陕C20140002 ©怡康医药网上药店</p>
-        <p>2001-2017版权所有</p>
-    </div>
+		<div class="member_data_foot">
+			<div style="width: 186px;margin: 0px auto; height: 30px;display:none;">
+				<div class="load_left" style="width: auto;">
+					<a href="//www.wandoujia.com/apps/cn.yaoking" target="_blank"><img src="//www.yaoking.cn/wap_themes/yaoking_new/images/xiazai.png"></a>
+				</div>
+				<div class="load_right" style="width: auto;">
+					<a href="//www.wandoujia.com/apps/cn.yaoking" target="_blank">下载【怡康到家】手机app</a>
+				</div>
+			</div>
+			<div style="clear: both"></div>
+			<p>怡康医药全国免费专线400-799-9120</p>
+			<p>药品交易资格证：陕C20140002 ©怡康医药网上药店</p>
+			<p>2001-2017版权所有</p>
+		</div>
 	</div>
 </template>
 
@@ -386,44 +390,61 @@
 		data() {
 			return {
 				value: '',
-				recommend: []
+				clientHeight: "",
+				recommend: [{
+						id: 1,
+						path: require('../img/slideshow/slideshow1.jpg')
+					},
+					{
+						id: 2,
+						path: require('../img/slideshow/slideshow2.jpg')
+					},
+					{
+						id: 3,
+						path: require('../img/slideshow/slideshow3.jpg')
+					},
+					{
+						id: 4,
+						path: require('../img/slideshow/slideshow4.jpg')
+					},
+				]
 			}
 		},
-		methods:{
-			goto(name){
+		methods: {
+			//路由跳转
+			goto(name) {
 				this.$router.push(name);
 			},
-			gotomore(name){
+			gotomore(name) {
 				this.$router.push(name);
+			},
+
+			changeFixed(clientHeight) { //动态修改样式
+				//             console.log(clientHeight);
+				this.$refs.listHeight.style.height = clientHeight - 43 + 'px';
+				//             console.log(this.$refs);
 			}
 		},
-		created() {
-			this.recommend = [{
-					id: 1,
-					path: require('../img/slideshow/slideshow1.jpg')
-				},
-				{
-					id: 2,
-					path: require('../img/slideshow/slideshow2.jpg')
-				},
-				{
-					id: 3,
-					path: require('../img/slideshow/slideshow3.jpg')
-				},
-				{
-					id: 4,
-					path: require('../img/slideshow/slideshow4.jpg')
-				},
-			]
+		mounted() {
+			this.clientHeight = `${document.documentElement.clientHeight}`
+			window.onresize = function temp() {
+				this.clientHeight = `${document.documentElement.clientHeight}`;
+			}
 		},
-		mouted(){
-			
-		}
-		
+		watch: {
+			// 如果 `clientHeight` 发生改变，这个函数就会运行
+			clientHeight: function() {
+				this.changeFixed(this.clientHeight)
+			}
+		},
+		created(){
+			this.$axios.get("http://localhost:4008/sinaapi/api/config/list").then(res=>{
+				let data=res
+				console.log(data);
+				
+			})
+		},
 	}
-	
- var myscroll=document.querySelector('.myscroll')
- 
 </script>
 
 <style lang="scss">
@@ -433,9 +454,8 @@
 		min-width: 320px;
 		margin: 0px auto;
 		margin-bottom: 43px;
-		overflow: scroll;
+		overflow: auto;
 		/*这里有问题*/
-		max-height: 626px;
 		.header {
 			width: 100%;
 			height: 52.5px;
@@ -980,86 +1000,82 @@
 			line-height: 30px;
 			font-size: 14px;
 		}
-		
 		.neir_sy {
-		    width: 100%;
-		    margin: 0px auto;
-		    height: auto;
-		    margin-bottom: 7px;
-		    box-shadow: 0px 2px 5px #dfe4e2;
-		   .c-fix li:nth-child(odd) {
-			    margin-right: 1.6%;
+			width: 100%;
+			margin: 0px auto;
+			height: auto;
+			margin-bottom: 7px;
+			box-shadow: 0px 2px 5px #dfe4e2;
+			.c-fix li:nth-child(odd) {
+				margin-right: 1.6%;
 			}
-		    .c-fix{
-				    height: auto;
-				    width: 100%;
-				    display: block;
-				    overflow: hidden;
-				    li{
-				    	width: 49.2%;
-					    height: auto;
-					    background: #fff;
-					    float: left;
-					    margin-top: 7px;
-					    padding-bottom: 15px;
-					    box-shadow: 0px 2px 5px #dfe4e2;
-					    a{
-					    	.goods-pic{
-					    		width: 75%;
-							    height: 160px;
-							    margin: 0px auto;
-							    margin-top: 15px;
-							    text-align: center;
-							    img{
-							    	width: 100%;
-								    height: auto;
-								    max-width: 160px;
-								    max-height: 160px;
-							    }
-					    	}
-					    	.goods-name{
-					    		width: 90%;
-							    line-height: 30px;
-							    font-size: 15px;
-							    height: 60px;
-							    overflow: hidden;
-							    color: #454545;
-							    font-weight: lighter;
-							    margin: 0px auto;
-					    	}
-					    	.goods-price-info{
-					    		.price {
-									    margin-left: 15px;
-									    font-size: 16px;
-									    color: red;
-									}
-									del {
-									    line-height: 23px;
-									    text-decoration: line-through;
-									    color: #333;
-									}
-					    	}
-					    }
-				    }
-		    }
-	}
-		
+			.c-fix {
+				height: auto;
+				width: 100%;
+				display: block;
+				overflow: hidden;
+				li {
+					width: 49.2%;
+					height: auto;
+					background: #fff;
+					float: left;
+					margin-top: 7px;
+					padding-bottom: 15px;
+					box-shadow: 0px 2px 5px #dfe4e2;
+					a {
+						.goods-pic {
+							width: 75%;
+							height: 160px;
+							margin: 0px auto;
+							margin-top: 15px;
+							text-align: center;
+							img {
+								width: 100%;
+								height: auto;
+								max-width: 160px;
+								max-height: 160px;
+							}
+						}
+						.goods-name {
+							width: 90%;
+							line-height: 30px;
+							font-size: 15px;
+							height: 60px;
+							overflow: hidden;
+							color: #454545;
+							font-weight: lighter;
+							margin: 0px auto;
+						}
+						.goods-price-info {
+							.price {
+								margin-left: 15px;
+								font-size: 16px;
+								color: red;
+							}
+							del {
+								line-height: 23px;
+								text-decoration: line-through;
+								color: #333;
+							}
+						}
+					}
+				}
+			}
+		}
 		.member_data_foot {
-	    width: 100%;
-	    margin: 0px auto;
-	    padding: 30px 0px;
-	    padding-bottom: 30px;
-	    p{
-	    	width: 100%;
-		    margin: 0px auto;
-		    height: 30px;
-		    line-height: 30px;
-		    text-align: center;
-		    font-size: 13px;
-		    color: #a4a4a4;
-	    }
-}
-		
-		
+			width: 100%;
+			margin: 0px auto;
+			padding: 30px 0px;
+			padding-bottom: 30px;
+			p {
+				width: 100%;
+				margin: 0px auto;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				font-size: 13px;
+				color: #a4a4a4;
+			}
+		}
 	}
 </style>
