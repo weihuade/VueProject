@@ -6,7 +6,7 @@
                 <img src="../img/search/search-bg.png" />
             </router-link>
         </div>
-        <mt-search v-model="value" cancel-text="搜索" autofocus placeholder="请输入搜索词">
+        <mt-search v-model="keyword" cancel-text="搜索" placeholder="请输入搜索词">
             <!--搜索结果显示出来的模块<mt-cell>-->
             <!-- <mt-cell>
                 无数据，样式有点bug
@@ -20,9 +20,10 @@
 export default {
     data() {
         return {
-        value: ""
+        keyword: ""
         };
-    }
+    },
+    created(){},
 }
 </script>
 <style lang="scss">

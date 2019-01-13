@@ -38,7 +38,6 @@
 					icon: 'home',
 					path: '/home',
 					name: 'Home'
-
 				}, {
 					text: '分类',
 					icon: 'list-unordered',
@@ -67,16 +66,23 @@
 				this.$router.push({
 					path
 				})
-
 			}
 		},
-		created() {
+		watch:{
+			$route(to,from){
+				this.selected = this.$route.name
+			}
+		}
+		// beforeMount(){
+		// 	console.log(this.$route)
+		// }
+		// created() {
 			//buile出来的东西上线的项目是没有webpack环境的所要以我们要是要用跨域还是要用nodejs去实现代理了。
 			//			//这里用了单引号就出现了一个问题了。
 			//			this.$axios.get("/dbapi/in_theaters").then(res=>{
 			////				console.log(res.data);
 			//			})
-		}
+		// }
 	}
 </script>
 
