@@ -438,7 +438,7 @@
 			}
 		},
 		created(){
-			this.$axios.get("http://localhost:4008/sinaapi/api/config/list").then(res=>{
+			this.$axios.get("http://localhost:12345").then(res=>{
 				let data=res
 				console.log(data);
 				
