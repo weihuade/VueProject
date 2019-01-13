@@ -2,13 +2,15 @@
 <div>
     <div class="search">
         <div class="search-bg">
-            <img src="../img/search/search-bg.png" />
+            <router-link :to="{name:'Classily'}">
+                <img src="../img/search/search-bg.png" />
+            </router-link>
         </div>
         <mt-search v-model="value" cancel-text="搜索" autofocus placeholder="请输入搜索词">
             <!--搜索结果显示出来的模块<mt-cell>-->
-            <mt-cell>
-
-            </mt-cell>
+            <!-- <mt-cell>
+                无数据，样式有点bug
+            </mt-cell> -->
         </mt-search>
     </div>
 </div>
@@ -32,18 +34,18 @@ export default {
     background-color: #31c27c;
     .search-bg{
         float: left;
-        width: 5%;
+        width: 10%;
         height: 100%;
         img {
             width: 100%;
             margin-top: 20px;
-            margin-left: 2%;
+            margin-left: 50%;
             width: 15px;
             height: 15px;
         }
     }
     .mint-search {
-        width: 95%;
+        width: 90%;
         height: 100%;
         .mint-searchbar {
             background-color: #31c27c;

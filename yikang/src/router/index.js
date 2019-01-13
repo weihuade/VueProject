@@ -9,8 +9,8 @@ import Mine from '@/components/Mine';
 import Reg from '@/components/Reg';
 import Cart from '@/components/Cart';
 import Homemore from '@/components/Homemore';
-			    import Seckill from '@/components/Seckill';
-			    import Advance from '@/components/Advance';
+import Seckill from '@/components/Seckill';
+import Advance from '@/components/Advance';
 
 
 
