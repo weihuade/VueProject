@@ -59,6 +59,10 @@
 import { MessageBox } from 'mint-ui';
 import { Cell } from 'mint-ui';
 export default {
+    // beforeRouteEnter(to, from, next){
+    //     console.log("from:",from)
+    //     next({query:{redirect:from.fullPath}})
+    // },
     methods:{
         logout(){
             MessageBox('提示', '退出成功');
