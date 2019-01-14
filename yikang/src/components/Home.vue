@@ -462,6 +462,10 @@
 				this.changeFixed(this.clientHeight)
 			}
 		},
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 6238a5d338b0b32d2cf12111373feccb115914d0
 	}
 </script>
 

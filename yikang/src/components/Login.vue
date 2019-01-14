@@ -29,10 +29,6 @@
 import '../sass/common.scss';
 import { MessageBox } from 'mint-ui';
 export default {
-    // beforeRouteLeave(to, from, next){
-    //     console.log(666)
-    //     next()
-    // },
     data(){
         return{
             checked:false,
@@ -50,26 +46,37 @@ export default {
         login(){
             const self = this;
             if(self.ruleForm.phone!=='' && self.ruleForm.password!==''){
-                // this.$axios.get('http://localhost:6636/user/uid=001').then(res=>{
-                //     console.log(res)
-                // })
-                MessageBox('提示', '登录成功');
-                sessionStorage.setItem('token',new Date().getTime());
-                // this.$router.push({path:'/home'});
-                if(self.checked == true){
-                    //传入账号名，密码，和保存天数3个参数
-                    self.setCookie(self.ruleForm.phone, self.ruleForm.password, 7);
-                }else{
-                   //清空Cookie
-                    self.clearCookie(); 
-                }
+                this.$axios.get('http://localhost:6636/user',{
+                    params:{
+                        phone:self.ruleForm.phone,
+                        password:self.ruleForm.password
+                    }
+                }).then(res=>{
+                    console.log("res",res)
+                    let data = res.data;
+                    if(data.data){
+                        MessageBox('提示', '登录成功');
+                        sessionStorage.setItem('token',new Date().getTime());
+                         setTimeout(()=>{
+                            this.$router.replace({path:'/mine'})
+                        },1000)
+                        if(self.checked == true){
+                            //传入账号名，密码，和保存天数3个参数
+                            self.setCookie(self.ruleForm.phone, self.ruleForm.password, 7);
+                        }else{
+                        //清空Cookie
+                            self.clearCookie(); 
+                        }
+                    }else{
+                        MessageBox('提示', '账号或密码错误');
+                    }
+                }).catch(err=>{
+                    console.log("err",err)
+                });
+                
             }else{
                 MessageBox('提示', '账户密码不能为空');
-            }
-            setTimeout(()=>{
-                this.$router.replace({path:'/mine'})
-            },1000)
-            
+            } 
         },
         goto(path){
             this.$router.push({path})

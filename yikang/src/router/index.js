@@ -56,99 +56,136 @@ const Advance = resolve => require(['@/components/Advance'], resolve)
 // import Reg from '@/components/Reg';
 // import Cart from '@/components/Cart';
 // import Favorite from '@/components/Favorite';
-
-const routes = [{
-        path: '/',
-        redirect: '/home'
-    },
-    {
-        name: 'Home',
-        path: '/home',
-        component: Home
-    },
-    {
-        name: 'Classily',
-        path: '/classily',
-        component: Classily
-    },
-    {
-        name: 'Cart',
-        path: '/cart',
-        component: Cart
-    },
-    {
-        name: 'Mine',
-        path: '/mine',
-        component: Mine,
-        meta: {
-        requiresAuth: true
+  
+const routes = [
+        {
+          path:'/',
+          redirect:'/home',
+          meta:{
+            // keepAlive: true
+          }
         },
-    },
-    {
-        name: 'Form',
-        path: '/form',
-        component: Form
-    },
-    {
-        name: 'Wallet',
-        path: '/wallet',
-        component: Wallet
-    },
-    {
-        name: 'ChangePW',
-        path: '/changePW',
-        component: ChangePW
-    },
-    {
-        name: 'SetLocation',
-        path: '/setLocation',
-        component: SetLocation
-    },
-    {
-        name: 'Favorite',
-        path: '/favorite',
-        component: Favorite,
-        meta: {
-        requiresAuth: true
-        }
-    },
-    {
-        name: 'Login',
-        path: '/login',
-        component: Login
-    },
-    {
-        name: 'Reg',
-        path: '/reg',
-        component: Reg
-    },
-    {
-        name: 'Search',
-        path: '/search',
-        component: Search
-    },
-    {
-
-    //  	name:'Homemore',
-    path: '/homemore',
-    component: Homemore,
-    children: [{
-        path: '',
-        redirect: {
-          name: 'Seckill'
-        }
-      },
+        {
+          name:'Home',
+           path:'/home',
+           component:Home,
+           meta:{
+            // keepAlive: true,
+          }
+        },
+        {
+          name:'Classily',
+          path:'/classily',
+          component:Classily,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Cart',
+          path:'/cart',
+          component:Cart,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Mine',
+          path:'/mine',
+          component:Mine,
+          meta:{
+            // keepAlive: true,
+            requiresAuth:true
+          },
+        },
+        {
+          name:'Form',
+          path:'/form',
+          component:Form,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Wallet',
+          path:'/wallet',
+          component:Wallet,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'ChangePW',
+          path:'/changePW',
+          component:ChangePW,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'SetLocation',
+          path:'/setLocation',
+          component:SetLocation,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Favorite',
+          path:'/favorite',
+          component:Favorite,
+          meta:{
+            // keepAlive: true,
+            requiresAuth:true
+          }
+        },
+        {
+          name:'Login',
+          path:'/login',
+          component:Login,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Reg',
+          path:'/reg',
+          component:Reg,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Search',
+          path:'/search',
+          component:Search,
+          meta:{
+            // keepAlive: true
+          }
+        },
       {
-        path: 'seckill',
-        name: 'Seckill',
-        component: Seckill
-      }, {
-        path: 'advance',
-        name: 'Advance',
-        component: Advance
-      }
-    ]
-  },
+//  	name:'Homemore',
+    	path:'/homemore',
+      component:Homemore,
+      meta:{
+        // keepAlive: false
+      },
+    	children:[
+    		{
+    		path:'',
+    		redirect:{name:'Seckill'}
+    	},
+    	{
+    		path:'seckill',
+    		name:'Seckill',
+    		component:Seckill
+    	},{
+    		path:'advance',
+    		name:'Advance',
+    		component:Advance
+    	}
+    	]
+    }
 ];
 const router = new Router({
   routes
@@ -157,17 +194,19 @@ const router = new Router({
 //在进入某个路由前执行的代码
 router.beforeEach((to, from, next) => {
   //设置全局路由守卫后要进入to路由，必须调用next()方法
-  if (to.meta.requiresAuth) {
-    //判断是否登陆
-    if (sessionStorage.getItem('token')) {
-      next()
-    } else {
-      next({
-        path: '/login'
-      })
-    }
-  } else {
-    next();
+  if(to.meta.requiresAuth){
+      //判断是否登陆
+      if(sessionStorage.getItem('token')){
+        next()
+      }else{
+        next({
+          path:'/login',
+          // query:{redirect:from.fullPath}
+        })
+        
+      }
+  }else{
+      next();
   }
 })
 

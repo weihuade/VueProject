@@ -1,6 +1,8 @@
 <template>
 	<div>
-		<router-view/>
+		<!-- <keep-alive> -->
+			<router-view></router-view>
+		<!-- </keep-alive> -->
 		<!--插件使用-->
 		<mt-tabbar v-model="selected"  fixed>
 			<!--因为我们所点击的标签不是实际存在的所以当没有给click事件加上native的时候点击是没有效果的。-->
@@ -54,7 +56,7 @@
 					path: '/mine',
 					name: 'Mine'
 				}],
-				selected: 'Home'
+				selected: 'Home',
 			}
 		},
 		methods: {
@@ -68,11 +70,16 @@
 				})
 			}
 		},
-		watch:{
-			$route(to,from){
+		watch:{//监听路由
+			$route(to,from){//响应路由参数的变化
 				this.selected = this.$route.name
 			}
-		}
+		},
+		mounted(){
+			// console.log(666)
+		},
+		//组件被keep-alive包裹的组件，会多出两个生命周期钩子：activated、deactivated
+		
 		// beforeMount(){
 		// 	console.log(this.$route)
 		// }
