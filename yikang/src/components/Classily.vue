@@ -269,7 +269,10 @@ export default {
         },
     },
     created(){
-        this.$axios.get("http://localhost:12345").then(res=>{
+        this.$axios.get("http://localhost:12345",{
+					params:{
+						rq:"wap/gallery-cate_ajax.html",
+					}}).then(res=>{
             let dataList=res.data;
             this.cates=dataList.result;
             console.log(this.cates[0].son_info[0].son_name);

@@ -462,17 +462,6 @@
 				this.changeFixed(this.clientHeight)
 			}
 		},
-<<<<<<< HEAD
-		
-=======
-		created(){
-			this.$axios.get("http://localhost:12345").then(res=>{
-				let data=res
-				// console.log(data);
-				
-			})
-		},
->>>>>>> 5c79530f674fd7f8c00ca20a02635270afc18400
 	}
 </script>
 
