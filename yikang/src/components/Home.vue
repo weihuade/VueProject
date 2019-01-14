@@ -440,7 +440,7 @@
 		created(){
 			this.$axios.get("http://localhost:12345").then(res=>{
 				let data=res
-				console.log(data);
+				// console.log(data);
 				
 			})
 		},

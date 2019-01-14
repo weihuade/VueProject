@@ -2,11 +2,9 @@
 <div>
     <div class="search">
         <div class="search-bg">
-            <router-link :to="{name:'Classily'}">
-                <img src="../img/search/search-bg.png" />
-            </router-link>
+            <img src="../img/search/search-bg.png" @click="goto"/>
         </div>
-        <mt-search v-model="keyword" cancel-text="搜索" placeholder="请输入搜索词" @input="search">
+        <mt-search v-model="keyword" cancel-text="搜索" placeholder="请输入搜索词">
             <!--搜索结果显示出来的模块<mt-cell>-->
             <!-- <mt-cell>
                 无数据，样式有点bug
@@ -24,12 +22,16 @@ export default {
         };
     },
     methods:{
-        search(){
-            console.log(this)
-        }
+        goto(){
+            this.$router.push({name:'Classily'});
+        },
     },
     created(){
-        // console.log(this)
+        /* this.$axios.get("http://localhost:12345").then(res=>{
+            let dataList=res.data;
+            this.cates=dataList.result;
+            console.log(this.cates);
+        }) */
     },
 }
 </script>
