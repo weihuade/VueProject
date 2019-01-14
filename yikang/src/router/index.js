@@ -31,33 +31,118 @@ const Homemore = resolve => require(['@/components/Homemore'],resolve)
 // import Favorite from '@/components/Favorite';
   
 const routes = [
-        {path:'/',redirect:'/home'},
-        {name:'Home', path:'/home',component:Home},
-        {name:'Classily',path:'/classily',component:Classily},
-        {name:'Cart',path:'/cart',component:Cart},
+        {
+          path:'/',
+          redirect:'/home',
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Home',
+           path:'/home',
+           component:Home,
+           meta:{
+            // keepAlive: true,
+          }
+        },
+        {
+          name:'Classily',
+          path:'/classily',
+          component:Classily,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Cart',
+          path:'/cart',
+          component:Cart,
+          meta:{
+            // keepAlive: true
+          }
+        },
         {
           name:'Mine',
           path:'/mine',
           component:Mine,
-          meta:{requiresAuth:true},
+          meta:{
+            // keepAlive: true,
+            requiresAuth:true
+          },
         },
-        {name:'Form',path:'/form',component:Form},
-        {name:'Wallet',path:'/wallet',component:Wallet},
-        {name:'ChangePW',path:'/changePW',component:ChangePW},
-        {name:'SetLocation',path:'/setLocation',component:SetLocation},
+        {
+          name:'Form',
+          path:'/form',
+          component:Form,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Wallet',
+          path:'/wallet',
+          component:Wallet,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'ChangePW',
+          path:'/changePW',
+          component:ChangePW,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'SetLocation',
+          path:'/setLocation',
+          component:SetLocation,
+          meta:{
+            // keepAlive: true
+          }
+        },
         {
           name:'Favorite',
           path:'/favorite',
           component:Favorite,
-          meta:{requiresAuth:true}
+          meta:{
+            // keepAlive: true,
+            requiresAuth:true
+          }
         },
-        {name:'Login',path:'/login',component:Login},
-        {name:'Reg',path:'/reg',component:Reg},
-        {name:'Search',path:'/search',component:Search},
         {
+          name:'Login',
+          path:'/login',
+          component:Login,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Reg',
+          path:'/reg',
+          component:Reg,
+          meta:{
+            // keepAlive: true
+          }
+        },
+        {
+          name:'Search',
+          path:'/search',
+          component:Search,
+          meta:{
+            // keepAlive: true
+          }
+        },
+      {
 //  	name:'Homemore',
     	path:'/homemore',
-    	component:Homemore,
+      component:Homemore,
+      meta:{
+        // keepAlive: false
+      },
     	children:[
     		{
     		path:'',
@@ -87,7 +172,11 @@ router.beforeEach((to,from,next)=>{
       if(sessionStorage.getItem('token')){
         next()
       }else{
-        next({path:'/login'})
+        next({
+          path:'/login',
+          // query:{redirect:from.fullPath}
+        })
+        
       }
   }else{
       next();
