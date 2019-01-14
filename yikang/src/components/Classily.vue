@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- 顶部搜索框 -->
-        <div class="cateSearch" @click="goto">
+        <div class="cateSearch" @click="goto('Search')">
             <mt-search v-model="value" cancel-text autofocus placeholder="搜索疾病，症状或药品"></mt-search>
         </div>
         <div class="catesNav clearfix">
@@ -11,22 +11,20 @@
                     <li>{{lists.father_name}}</li>
                 </ul>
             </div>
-            <!-- 楼层 （数据还没做）-->
+            <!-- 楼层 -->
             <div class="cateCont" ref="contHeight">
                 <div v-for="items in cates" :key="items.cat_id">
-                    <div class="cont-detail" v-for="item in items.son_info" :key="item.cat_id">
+                    <div class="cont-detail" v-for="item in items.son_info" :key="item.son_name">
                         <!-- <div> -->
                             <div class="cont-hd">
                                 <a class="cont-more" href="#">{{item.son_name}}</a>
                             </div>
                             <ul class="cont-items  clearfix">
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item1.jpg" alt="">
-                                        <span>感冒发烧</span>
-                                    </a>
+                                <li  @click="goto('List')">
+                                    <img src="../img/classily/items/item1.jpg" alt="">
+                                    <span>感冒发烧</span>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="#">
                                         <img src="../img/classily/items/item2.jpg" alt="">
                                         <span>呼吸系统</span>
@@ -109,7 +107,7 @@
                                         <img src="../img/classily/items/item4.jpg" alt="">
                                         <span>内分泌药</span>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         <!-- </div> -->
                         
@@ -264,15 +262,20 @@ export default {
             this.$refs.contHeight.style.height = clientHeight-96+ 'px';
             // console.log(clientHeight);
         },
-        goto(){
-            this.$router.push({name:'Search'});
+        goto(name){
+            this.$router.push({name});
+            console.log(this.$router);
         },
     },
     created(){
-        this.$axios.get("http://localhost:12345").then(res=>{
+        this.$axios.get("http://localhost:12345",{
+					params:{
+						rq:"wap/gallery-cate_ajax.html",
+//					q:this.keyword
+					}}).then(res=>{
             let dataList=res.data;
             this.cates=dataList.result;
-            console.log(this.cates[0].son_info[0].son_name);
+            // console.log(this.cates[0].son_info[1].son_name);
         })
     },
 }
@@ -363,21 +366,19 @@ div{
                         text-align: center;
                         margin-left: 2%;
                         margin-bottom: 1%;
-                        a{
                         img{
                                 width: 50px;
                                 height: 50px;
                                 border-radius: 50%;
-                            } 
-                            span{
-                                width: 100%;
-                                display: block;
-                                overflow: hidden;
-                                height: 30px;
-                                color: #7a7a7a;
-                                font-size: 12px;
-                                white-space: nowrap;
-                            }
+                        } 
+                        span{
+                            width: 100%;
+                            display: block;
+                            overflow: hidden;
+                            height: 30px;
+                            color: #7a7a7a;
+                            font-size: 12px;
+                            white-space: nowrap;
                         }
                     }
                 }

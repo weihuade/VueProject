@@ -45,6 +45,7 @@ const Search = resolve => require(['@/components/Search'], resolve)
 const Homemore = resolve => require(['@/components/Homemore'], resolve)
 const Seckill = resolve => require(['@/components/Seckill'], resolve)
 const Advance = resolve => require(['@/components/Advance'], resolve)
+const List = resolve => require(['@/components/List'], resolve)
 // import Home from '@/components/Home';
 // import Classily from '@/components/Classily';
 // import Mine from '@/components/Mine';
@@ -126,6 +127,11 @@ const routes = [{
         name: 'Search',
         path: '/search',
         component: Search
+    },
+    {
+        name: 'List',
+        path: '/list',
+        component: List
     },
     {
 
