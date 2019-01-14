@@ -4,10 +4,18 @@
 			<div class="pic">
 				<img src="../img/homeimg/logonew.png" />
 			</div>
-			<mt-search v-model="value" cancel-text autofocus placeholder="请输入您需要购买的商品">
+			<mt-search 
+				v-model="keyword"
+				cancel-text 
+				autofocus 
+				placeholder="请输入您需要购买的商品"
+				@input="search" 
+				 >
 				<!--搜索结果显示出来的模块<mt-cell>-->
-				<mt-cell>
-
+				<mt-cell v-for="item in result" :key="item.cat_id">
+					<span>
+						{{item.father_name}}
+					</span>
 				</mt-cell>
 
 			</mt-search>
@@ -16,13 +24,13 @@
 		<!--下一模块开始的位置-->
 		<mt-swipe :auto="4000">
 			<mt-swipe-item v-for="item in recommend" :key="item.id">
-				<img :src="item.path" />
+				<img :src="item.path"/>
 			</mt-swipe-item>
 		</mt-swipe>
 		<div class="qiangg_sy">
 			<ul>
-				<li><img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-zixun.png" /></li>
-				<li><img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-Horn.png" /></li>
+				<li><img src="../img/homeimg/jiangkang.png" /></li>
+				<li><img src="../img/homeimg/laba.png" /></li>
 				<li>
 					<div id="myscroll">
 						<a title="怡康医药“24小时药店”开通">
@@ -46,59 +54,59 @@
 			<ul>
 				<li>
 					<div>
-						<img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-icon1.png" />
+						<img src="../img/homeimg/home-icon1.png" />
 					</div>
 					<p>领券</p>
 				</li>
 				<!--2-->
 				<li>
 					<div>
-						<img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-icon1.png" />
+						<img src="../img/homeimg/home-icon2.png" />
 					</div>
-					<p>领券</p>
+					<p>每周特惠</p>
 				</li>
 				<!--3-->
 				<li>
 					<div>
-						<img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-icon1.png" />
+						<img src="../img/homeimg/home-icon3.png" />
 					</div>
-					<p>领券</p>
+					<p>品牌周末惠</p>
 				</li>
 				<!--4-->
 				<li>
 					<div>
-						<img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-icon2.png" />
+						<img src="../img/homeimg/home-icon4.png" />
 					</div>
-					<p>领券</p>
+					<p>季节用药</p>
 				</li>
 
 				<!--5-->
 				<li>
 					<div>
-						<img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-icon2.png" />
+						<img src="../img/homeimg/home-icon5.png" />
 					</div>
-					<p>领券</p>
+					<p>新特药</p>
 				</li>
 				<!--6-->
 				<li>
 					<div>
-						<img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-icon2.png" />
+						<img src="../img/homeimg/home-icon6.png" />
 					</div>
-					<p>领券</p>
+					<p>母婴专场</p>
 				</li>
 				<!--7-->
 				<li>
 					<div>
-						<img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-icon2.png" />
+						<img src="../img/homeimg/home-icon7.png" />
 					</div>
-					<p>领券</p>
+					<p>恰适康</p>
 				</li>
 				<!--8-->
 				<li>
 					<div>
-						<img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-icon2.png" />
+						<img src="../img/homeimg/home-icon7.png" />
 					</div>
-					<p>领券</p>
+					<p>风湿骨病</p>
 				</li>
 			</ul>
 		</div>
@@ -115,30 +123,30 @@
 				<ul>
 					<li>
 						<a>
-							<img src="" />
+							<img src="../img/homeimg/mrms_ico1.jpg" />
 						</a>
-						<p class="topic_name">善存银片</p>
-						<p class="topic_price">153.80</p>
+						<p class="topic_name">优生骨胶原美白嫩肤护手霜 </p>
+						<p class="topic_price">19.50</p>
 					</li>
 
 					<li>
 						<a>
-							<img src="" />
+							<img src="../img/homeimg/mrms_ico2.jpg" />
 						</a>
-						<p class="topic_name">善存银片</p>
-						<p class="topic_price">153.80</p>
+						<p class="topic_name">一次性使用医用口罩  少女粉</p>
+						<p class="topic_price">11.64</p>
 					</li>
 
 					<li>
 						<a>
-							<img src="" />
+							<img src="../img/homeimg/mrms_ico3.jpg" />
 						</a>
-						<p class="topic_name">善存银片</p>
-						<p class="topic_price">153.80</p>
+						<p class="topic_name">枸橼酸西地那非片（万艾可）</p>
+						<p class="topic_price">495.00</p>
 					</li>
 					<li>
 						<a>
-							<img src="" />
+							<img src="../img/homeimg/mrms_ico4.jpg" />
 						</a>
 						<p class="topic_name">善存银片</p>
 						<p class="topic_price">153.80</p>
@@ -149,17 +157,17 @@
 		</div>
 		<div class="qiangh_sy">
 			<div class="qiangh_left">
-				<a><img src="//www.yaoking.cn/wap_themes/yaoking_new/images/home-time.png" /></a>
+				<a><img src="../img/homeimg/home-time.png" /></a>
 			</div>
 			<!--右边-->
 			<div class="qiangh_right">
 				<div class="qiangh_right_top">
-					<a><img src="http://img1.yaoking.cn//bd/94/e8/4803309f640d0015ca1eea2ea1170a0488e.jpg?1498207848#w" /></a>
+					<a><img src="../img/homeimg/hometime1.jpg" /></a>
 				</div>
 				<div class="qiangh_right_bottom">
 					<ul>
-						<li><img src="http://img1.yaoking.cn//de/9f/04/a74a9e110391f47d2dfe22afd5552e03874.jpg?1498207784#w" /></li>
-						<li><img src="http://img1.yaoking.cn//de/9f/04/a74a9e110391f47d2dfe22afd5552e03874.jpg?1498207784#w" /></li>
+						<li><img src="../img/homeimg/hometime3.jpg" /></li>
+						<li><img src="../img/homeimg/hometime4.jpg" /></li>
 					</ul>
 				</div>
 
@@ -186,8 +194,8 @@
 						<img src="http://img1.yaoking.cn//34/36/b1/5d5acd0d27bc0336013968df0ee12493bf4.jpg@170w_170h?1502788640#h" alt="复方阿胶浆">
 					</div>
 					<p class="goods-price-info">
-						<span class="price">￥498.00</span>
-						<del>498.000</del>
+						<span class="price">￥398.00</span>
+						<del>398.00</del>
 					</p>
 				</li>
 				<li>
@@ -195,8 +203,8 @@
 						<img src="http://img1.yaoking.cn//83/cc/d5/f56287e11f80b10db8591f702c74cac31a7.jpg@170w_170h?1546655271#h" alt="复方阿胶浆">
 					</div>
 					<p class="goods-price-info">
-						<span class="price">￥498.00</span>
-						<del>498.000</del>
+						<span class="price">￥268.00</span>
+						<del>268.000</del>
 					</p>
 				</li>
 				<li>
@@ -204,8 +212,8 @@
 						<img src="http://img1.yaoking.cn//f0/04/66/d20aafda2c6fe2ebf2caf1e8c5bc11c3446.jpg@170w_170h?1546655594#h" alt="复方阿胶浆">
 					</div>
 					<p class="goods-price-info">
-						<span class="price">￥498.00</span>
-						<del>498.000</del>
+						<span class="price">￥888.00</span>
+						<del>888.000</del>
 					</p>
 				</li>
 			</ul>
@@ -261,8 +269,8 @@
 					</li>
 					<li>
 						<a class="pic_goods"><img src="../img/homeimg/ajiao.jpg" /></a>
-						<p class="topic_name">复方阿胶浆</p>
-						<p class="topic_price">498.00</p>
+						<p class="topic_name">鸿茅药酒 </p>
+						<p class="topic_price">1498.00</p>
 					</li>
 					<li>
 						<a class="pic_goods"><img src="../img/homeimg/ajiao.jpg" /></a>
@@ -314,7 +322,7 @@
 				<li class="yaoking-goods">
 					<a>
 						<div class="goods-pic">
-							<img src="http://img1.yaoking.cn//ea/5a/ad/3de68971c38a3489572cd55e1ad83fdffb4.jpg@170w_170h?1546655182#h" alt="复方阿胶浆">
+							<img src="http://img1.yaoking.cn//cd/33/05/483310698c2a0b103548cfeb54c688e4791.jpg@170w_170h?1546655631#h" alt="复方阿胶浆">
 						</div>
 						<div class="goods-name">
 							<span>抢</span> 复方阿胶浆 </div>
@@ -328,7 +336,7 @@
 				<li class="yaoking-goods">
 					<a>
 						<div class="goods-pic">
-							<img src="http://img1.yaoking.cn//ea/5a/ad/3de68971c38a3489572cd55e1ad83fdffb4.jpg@170w_170h?1546655182#h" alt="复方阿胶浆">
+							<img src="http://img1.yaoking.cn//a7/29/47/b9e19947f92be37751600f0454de6292377.jpg@170w_170h?1546655165#h" alt="复方阿胶浆">
 						</div>
 						<div class="goods-name">
 							<span>抢</span> 复方阿胶浆 </div>
@@ -341,7 +349,7 @@
 				<li class="yaoking-goods">
 					<a>
 						<div class="goods-pic">
-							<img src="http://img1.yaoking.cn//ea/5a/ad/3de68971c38a3489572cd55e1ad83fdffb4.jpg@170w_170h?1546655182#h" alt="复方阿胶浆">
+							<img src="http://img1.yaoking.cn/3b/29/9c/4021d270ee45f43e35ab8cfa8879ee2734b69fbe.jpg@170w_170h?1470815530#h" alt="复方阿胶浆">
 						</div>
 						<div class="goods-name">
 							<span>抢</span> 复方阿胶浆 </div>
@@ -354,7 +362,7 @@
 				<li class="yaoking-goods">
 					<a>
 						<div class="goods-pic">
-							<img src="http://img1.yaoking.cn//ea/5a/ad/3de68971c38a3489572cd55e1ad83fdffb4.jpg@170w_170h?1546655182#h" alt="复方阿胶浆">
+							<img src="http://img1.yaoking.cn//c2/5b/cc/c9f3a8e16b8446a77d93c1445cff90ca12b.jpg@170w_170h?1523850195#h" alt="复方阿胶浆">
 						</div>
 						<div class="goods-name">
 							<span>抢</span> 复方阿胶浆 </div>
@@ -386,10 +394,11 @@
 
 <script>
 	export default {
-
+		props:['keyword'],
 		data() {
 			return {
-				value: '',
+				timer:null,
+				result:[],
 				clientHeight: "",
 				recommend: [{
 						id: 1,
@@ -415,7 +424,7 @@
 			goto(name) {
 				this.$router.push(name);
 			},
-			gotomore(name) {
+			gotomore(name){
 				this.$router.push(name);
 			},
 
@@ -423,7 +432,23 @@
 				//             console.log(clientHeight);
 				this.$refs.listHeight.style.height = clientHeight - 43 + 'px';
 				//             console.log(this.$refs);
-			}
+			},
+			search(){
+				clearTimeout(this.timer);
+				if(!this.keyword) return;
+				this.timer=setTimeout(()=>{
+				this.$axios.get("http://localhost:12345",{
+					params:{
+						rq:"wap/gallery-cate_ajax.html",
+//					q:this.keyword
+					}}).then(res=>{
+				let data=res
+				this.result=data.data.result
+				console.log(this.result)
+				})
+				},1000)
+				
+			},
 		},
 		mounted() {
 			this.clientHeight = `${document.documentElement.clientHeight}`
@@ -437,13 +462,7 @@
 				this.changeFixed(this.clientHeight)
 			}
 		},
-		created(){
-			this.$axios.get("http://localhost:12345").then(res=>{
-				let data=res
-				console.log(data);
-				
-			})
-		},
+		
 	}
 </script>
 
@@ -516,6 +535,7 @@
 		/*header模块结束*/
 		.mint-search-list {
 			top: 9px;
+			z-index: 2;
 		}
 		.mint-swipe {
 			max-height: 239.06px;
@@ -1078,4 +1098,5 @@
 			}
 		}
 	}
+
 </style>
