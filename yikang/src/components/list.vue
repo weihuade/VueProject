@@ -37,6 +37,9 @@
                     <li>
                         <img src="../img/list/list-item2.jpg" alt="">
                     </li>
+                    <li>
+                        <img src="../img/list/list-item2.jpg" alt="">
+                    </li>
                 </ul>
             </div>
 		</div>
@@ -142,9 +145,10 @@ export default {
             }
             .pt-list{
                 li{
-                    width: 49%;
+                    width: 48%;
                     background: #fff;
-                    margin-top: 10px;
+                    // margin-top: 10px;
+                    margin: 10px 1% 0 1%;
                     box-shadow: 0px -1px 4px #dfe4e2; 
                     float: left;
                     img{

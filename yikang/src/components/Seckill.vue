@@ -1,4 +1,5 @@
 <template>
+
 	<div>
 	  秒杀
 	</div>
@@ -7,7 +8,12 @@
 	export default {
 	
   		}
-</script>
+
+
+<script>
+
+
 <style>
+
 
 </style>

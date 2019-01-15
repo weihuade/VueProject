@@ -264,7 +264,7 @@ export default {
         },
         goto(name){
             this.$router.push({name});
-            console.log(this.$router);
+            // console.log(this.$router);
         },
     },
     created(){
