@@ -46,6 +46,7 @@ const Homemore = resolve => require(['@/components/Homemore'], resolve)
 const Seckill = resolve => require(['@/components/Seckill'], resolve)
 const Advance = resolve => require(['@/components/Advance'], resolve)
 const List = resolve => require(['@/components/List'], resolve)
+const Detail = resolve => require(['@/components/Detail'], resolve)
 // import Home from '@/components/Home';
 // import Classily from '@/components/Classily';
 // import Mine from '@/components/Mine';
@@ -180,6 +181,14 @@ const routes = [
             name:'List',
             path:'/list',
             component:List,
+            meta:{
+              // keepAlive: true
+            }
+        },
+        {
+            name:'Detail',
+            path:'/detail',
+            component:Detail,
             meta:{
               // keepAlive: true
             }

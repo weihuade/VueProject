@@ -2,7 +2,7 @@
     <div>
         <!-- 顶部搜索框 -->
         <div class="cateSearch" @click="goto('Search')">
-            <mt-search v-model="value" cancel-text autofocus placeholder="搜索疾病，症状或药品"></mt-search>
+            <mt-search v-model="value" cancel-text placeholder="搜索疾病，症状或药品"></mt-search>
         </div>
         <div class="catesNav clearfix">
             <!-- 侧边栏 -->

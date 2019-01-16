@@ -1,4 +1,5 @@
 <template>
+<div class="listsHeight" ref="listsHeight">
     <div class="list">
         <div class="header">
 			<div class="pic">
@@ -8,7 +9,7 @@
 				v-model="keywords"
 				cancel-text 
 				autofocus 
-				placeholder="请输入您要搜索的商品"
+				placeholder="请输入要搜索的商品"
 				 >
 				<!--@input="search"  搜索结果显示出来的模块<mt-cell>-->
 				<!-- <mt-cell v-for="item in result" :key="item.cat_id">
@@ -31,19 +32,71 @@
                     <li>筛选</li>
                 </ul>
                 <ul class="pt-list clearfix">
-                    <li>
-                        <img src="../img/list/list-item1.jpg" alt="">
+                    <li @click="goto('Detail')">
+                        <div class="pt-img">
+                            <img src="../img/list/list-item1.jpg" alt="">
+                        </div>
+                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
+                        <div class="pt-price">1010</div>
                     </li>
                     <li>
-                        <img src="../img/list/list-item2.jpg" alt="">
+                        <div class="pt-img">
+                            <img src="../img/list/list-item2.jpg" alt="">
+                        </div>
+                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
+                        <div class="pt-price">1020</div>
                     </li>
                     <li>
-                        <img src="../img/list/list-item2.jpg" alt="">
+                        <div class="pt-img">
+                            <img src="../img/list/list-item1.jpg" alt="">
+                        </div>
+                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
+                        <div class="pt-price">1022</div>
+                    </li>
+                    <li>
+                        <div class="pt-img">
+                            <img src="../img/list/list-item1.jpg" alt="">
+                        </div>
+                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
+                        <div class="pt-price">1022</div>
+                    </li>
+                    <li>
+                        <div class="pt-img">
+                            <img src="../img/list/list-item1.jpg" alt="">
+                        </div>
+                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
+                        <div class="pt-price">1022</div>
+                    </li>
+                    <li>
+                        <div class="pt-img">
+                            <img src="../img/list/list-item2.jpg" alt="">
+                        </div>
+                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
+                        <div class="pt-price">1022</div>
+                    </li>
+                    <li>
+                        <div class="pt-img">
+                            <img src="../img/list/list-item1.jpg" alt="">
+                        </div>
+                        <div class="pt-name">感冒灵颗粒</div>
+                        <div class="pt-price">1022</div>
                     </li>
                 </ul>
+                <div class="pageview">
+                    <select>
+                        <option class="flip">1/8</option>
+                        <option class="flip">2/8</option>
+                        <option class="flip">3/8</option>
+                        <option class="flip">4/8</option>
+                        <option class="flip">5/8</option>
+                    </select>
+                    <a class="flip">下一页</a>
+                </div>
             </div>
 		</div>
     </div>
+</div>
+    
 </template>
 <script>
 import Vue from 'vue';
@@ -54,32 +107,59 @@ export default {
     data() {
         return {
         keywords: "",
+        clientHeight:"",
         tabs: [{
             icon: 'list-unordered'
         }],
         };
     },
+    mounted(){
+        this.clientHeight=`${document.documentElement.clientHeight}`
+        window.onresize=function temp(){
+            this.clientHeight=`${document.documentElement.clientHeight}`;
+            // console.log(this.clientHeight);
+        }
+    },
+    watch: {
+        // 如果 `clientHeight` 发生改变，这个函数就会运行
+        clientHeight: function () {
+            this.changeFixed(this.clientHeight)
+        }
+    },
+    methods:{
+        //动态修改样式
+        changeFixed(clientHeight){                        
+            this.$refs.listsHeight.style.height = clientHeight-43+ 'px';
+            // console.log(clientHeight);
+        },
+        goto(name){
+            this.$router.push({name});
+            // console.log(this.$router);
+        },
+    },
 }
 </script>
 <style lang="scss">
+.listsHeight{
+    overflow-y: auto;
     .list {
         background: #f2f2f2;
-        max-width: 640px;
+        // max-width: 640px;
         min-width: 320px;
         margin: 0px auto;
-        margin-bottom: 43px;
+        // margin-bottom: 43px;
         overflow: auto;
         /*这里有问题*/
         .header {
             width: 100%;
-            height: 52.5px;
+            height: 53px;
             background: #31c27c;
             .pic {
                 float: left;
                 width: 10%;
                 height: auto;
                 max-width: 53px;
-                max-height: 50px;
+                height: 53px;
                 margin-left: 10px;
                 img {
                     width: 100%;
@@ -89,10 +169,10 @@ export default {
                 }
             }
             .mint-search {
-                background: #31c27c;
+                // background: #31c27c;
                 width: 69%;
                 height: 100%;
-                height: 52.5px;
+                height: 53px;
                 float: left;
                 text-align: center;
                 line-height: 52.5px;
@@ -117,7 +197,7 @@ export default {
             }
             .list-tab {
                 float: left;
-                height: 52.5px;
+                height: 53px;
                 width: 10%;
                 font-size: 16px;
                 text-align: center;
@@ -130,7 +210,7 @@ export default {
         .gallery{
             .trigger-list{
                 box-shadow: 0px 4px 20px #dfe4e2;
-                margin-bottom: 10px;
+                // margin-bottom: 10px;
                 background: #fff;
                 font-size: 15px;
                 width: 100%;
@@ -151,14 +231,57 @@ export default {
                     margin: 10px 1% 0 1%;
                     box-shadow: 0px -1px 4px #dfe4e2; 
                     float: left;
-                    img{
-                        width: 100%;
-                        height: auto;
+                    .pt-img{
+                        width: 80%;
                         margin: 0px auto;
-                        padding: 0px;
-                        line-height: normal;
-                        vertical-align: top;
+                        // height: 37vw;
+                        max-height: 266px;
+                        border: 0;
+                        img{
+                            width: 100%;
+                            height: auto;
+                            margin: 0px auto;
+                            padding: 0px;
+                            line-height: normal;
+                            vertical-align: top;
                     }
+                    }
+                    .pt-name{
+                        width: 90%;
+                        margin: 0px auto;
+                        font-size: 14px;
+                        font-weight: bold;
+                        margin-top: 10px;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid #d7d7d7;
+                        text-align: center;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+                    .pt-price{
+                        font-weight: bold;
+                        font-size: 16px;
+                        width: 80%;
+                        margin: 0px auto;
+                        color: #fc4f4f;
+                        text-align: left;
+                        padding-top: 10px;
+                        overflow: hidden;
+                    }
+                }
+            }
+            .pageview{
+                width: 100%;
+                height: 25px;
+                padding: 10px 0;
+                text-align: center;
+                .flip{
+                    display: inline-block;
+                    padding: 1px 5px 2px;
+                    margin: 0 2px;
+                    border: 1px solid #ddd;
+                    background: #fff;
                 }
             }
         }
@@ -170,6 +293,8 @@ export default {
             visibility:hidden;
         }
     }
+}
+    
 </style>
 
 

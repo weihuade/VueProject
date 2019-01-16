@@ -1,8 +1,8 @@
 <template>
 <div>
     <div class="search">
-        <div class="search-bg">
-            <img src="../img/search/search-bg.png" @click="goto"/>
+        <div class="search-bg" @click="goto">
+            <img src="../img/search/search-bg.png"/>
         </div>
         <mt-search v-model="keyword" cancel-text="搜索" placeholder="请输入搜索词" @input="search">
             <!--搜索结果显示出来的模块<mt-cell>-->
@@ -41,20 +41,10 @@ export default {
                     this.items=dataList.result;
                     // console.log(this.items);
                 })
-            },500)
+            },300)
             
         },
     },
-    /* created(){
-        this.$axios.get("http://localhost:12345",{
-					params:{
-						rq:"wap/gallery-cate_ajax.html",
-					}}).then(res=>{
-            let dataList=res.data;
-            this.items=dataList.result;
-            console.log(this.items);
-        })
-    }, */
 }
 </script>
 <style lang="scss">
@@ -121,21 +111,5 @@ export default {
             }
         }
     }
-    /* .mint-search {
-        width: 90%;
-        height: 100%;
-        .mint-searchbar {
-            background-color: #31c27c;
-            height: 55px;
-            padding: 8px 15px;
-            .mint-searchbar-inner {
-                height: 26px;
-                border-radius: 8px;
-            }
-            a{
-                color: #ffffff;
-            }
-        }
-    } */
 }
 </style>
