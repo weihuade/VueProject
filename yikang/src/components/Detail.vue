@@ -7,24 +7,38 @@
             <li>评价</li>
             <li>登录</li>
         </ul>
-        <div class="banner">
-            <!-- 预留 -->
-        </div>
-        <div class="det-info">
-            <ul></ul>
-            <ul></ul>
-            <ul></ul>
-        </div>
         <ul class="det-maker">
-            <li></li>
-            <li></li>
-            <li></li>
+             <!-- v-for="items" :key="list.id" -->
+             <!-- 有点问题 -->
+            <!-- <img :src=`'https://image.jianke.com'+${items.thumbnailUri}` alt=""  class="det-img">
+            <li>{{items.productName}}</li>
+            <li>噢噢噢噢</li>
+            <li>啪啪啪</li> -->
         </ul>
     </div>
 </template>
 <script>
 export default {
-    
+    data() {
+        return {
+        items:[],
+        };
+    },
+    methods:{
+        goto(){
+            this.$router.push({name:'Classily'});
+        },
+    },
+    created(){
+        this.$axios.get("http://localhost:12345",{
+            params:{
+                rq:"https://fe-wcgi.jianke.com/v1/searchs?cid=5411&pn=1&ps=10",
+            }}).then(res=>{
+            let dataList=res.data.products.results;
+            this.items=dataList;
+            console.log(this.items);
+        })
+    },
 }
 </script>
 <style lang="scss">
@@ -45,18 +59,13 @@ export default {
             width: 10%;
         }
     }
-    .banner{
-        height: 340px;
-        width: 100%;
-        background: #58bc58;
-    }
-    .det-info{
-        height: 100px;
-        width: 100%;
-        margin-bottom: 8px;
-        background: #8617b9;
-    }
+    
     .det-maker{
+        .det-img{
+            height: 340px;
+            width: 100%;
+            background: #58bc58;
+        }
         li{
             margin-bottom: 8px;
             min-height: 30px;

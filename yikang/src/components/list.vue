@@ -32,54 +32,10 @@
                     <li>筛选</li>
                 </ul>
                 <ul class="pt-list clearfix">
-                    <li @click="goto('Detail')">
-                        <div class="pt-img">
-                            <img src="../img/list/list-item1.jpg" alt="">
-                        </div>
-                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
-                        <div class="pt-price">1010</div>
-                    </li>
-                    <li>
-                        <div class="pt-img">
-                            <img src="../img/list/list-item2.jpg" alt="">
-                        </div>
-                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
-                        <div class="pt-price">1020</div>
-                    </li>
-                    <li>
-                        <div class="pt-img">
-                            <img src="../img/list/list-item1.jpg" alt="">
-                        </div>
-                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
-                        <div class="pt-price">1022</div>
-                    </li>
-                    <li>
-                        <div class="pt-img">
-                            <img src="../img/list/list-item1.jpg" alt="">
-                        </div>
-                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
-                        <div class="pt-price">1022</div>
-                    </li>
-                    <li>
-                        <div class="pt-img">
-                            <img src="../img/list/list-item1.jpg" alt="">
-                        </div>
-                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
-                        <div class="pt-price">1022</div>
-                    </li>
-                    <li>
-                        <div class="pt-img">
-                            <img src="../img/list/list-item2.jpg" alt="">
-                        </div>
-                        <div class="pt-name">感冒灵颗粒哈哈哈哈哈哈好11</div>
-                        <div class="pt-price">1022</div>
-                    </li>
-                    <li>
-                        <div class="pt-img">
-                            <img src="../img/list/list-item1.jpg" alt="">
-                        </div>
-                        <div class="pt-name">感冒灵颗粒</div>
-                        <div class="pt-price">1022</div>
+                    <li @click="goto('Detail')" v-for="items in list" :key="items.id">
+                        <img :src="'https://image.jianke.com'+items.thumbnailUri" alt=""  class="pt-img">
+                        <div class="pt-name">{{items.productName}}</div>
+                        <div class="pt-price">￥：{{((items.lowestPrice)/100).toFixed(2)}}</div>
                     </li>
                 </ul>
                 <div class="pageview">
@@ -111,6 +67,7 @@ export default {
         tabs: [{
             icon: 'list-unordered'
         }],
+        list:[],
         };
     },
     mounted(){
@@ -136,6 +93,16 @@ export default {
             this.$router.push({name});
             // console.log(this.$router);
         },
+    },
+    created(){
+        this.$axios.get("http://localhost:12345",{
+					params:{
+                        rq:"https://fe-wcgi.jianke.com/v1/searchs?cid=5411&pn=1&ps=10",
+					}}).then(res=>{
+            let dataList=res.data.products.results;
+            this.list=dataList;
+            console.log(typeof(this.list[0].thumbnailUr));
+        })
     },
 }
 </script>
@@ -231,21 +198,22 @@ export default {
                     margin: 10px 1% 0 1%;
                     box-shadow: 0px -1px 4px #dfe4e2; 
                     float: left;
-                    .pt-img{
-                        width: 80%;
+                    // .pt-img{
+                        /* width: 80%;
                         margin: 0px auto;
                         // height: 37vw;
                         max-height: 266px;
-                        border: 0;
+                        border: 0; */
                         img{
-                            width: 100%;
+                            width: 60%;
                             height: auto;
-                            margin: 0px auto;
+                            margin: 5% 20% 0;
                             padding: 0px;
                             line-height: normal;
                             vertical-align: top;
-                    }
-                    }
+                            text-align:center;
+                        }
+                    // }
                     .pt-name{
                         width: 90%;
                         margin: 0px auto;

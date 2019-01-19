@@ -5,11 +5,12 @@ var request = require("request");
 
 var app = express();
 app.get("/",(req,res)=>{
-  	let data=req.query.rq;
-	console.log(data)
+      let data=req.query.rq;
+    //   let datas=req.query.rqs;
+	// console.log(data)
     res.append("Access-Control-Allow-Origin","*");
-    request.get(`http://www.yaoking.cn/${data}`,(err,response,body)=>{
-//      console.log(body);
+    request.get(`${data}`,(err,response,body)=>{
+     console.log(body);
 
         res.send(body);
     })

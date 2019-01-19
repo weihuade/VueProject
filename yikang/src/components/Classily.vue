@@ -7,228 +7,24 @@
         <div class="catesNav clearfix">
             <!-- 侧边栏 -->
             <div class="cateList" ref="listHeight">
-                <ul v-for="lists in cates" :key="lists.cat_id">
-                    <li>{{lists.father_name}}</li>
+                <ul v-for="lists in cates" :key="lists.id">
+                    <li>{{lists.categoryName}}</li>
                 </ul>
             </div>
             <!-- 楼层 -->
             <div class="cateCont" ref="contHeight">
-                <div v-for="items in cates" :key="items.cat_id">
-                    <div class="cont-detail" v-for="item in items.son_info" :key="item.son_name">
-                        <!-- <div> -->
-                            <div class="cont-hd">
-                                <a class="cont-more" href="#">{{item.son_name}}</a>
-                            </div>
-                            <ul class="cont-items  clearfix">
-                                <li  @click="goto('List')">
-                                    <img src="../img/classily/items/item1.jpg" alt="">
-                                    <span>感冒发烧</span>
-                                </li>
-                                <!-- <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item2.jpg" alt="">
-                                        <span>呼吸系统</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item3.jpg" alt="">
-                                        <span>消化系统</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="../img/classily/items/item4.jpg" alt="">
-                                        <span>内分泌药</span>
-                                    </a>
-                                </li> -->
-                            </ul>
-                        <!-- </div> -->
-                        
-                    </div>
+                <div class="cont-detail">
+                        <div class="cont-hd">
+                            <!-- <a class="cont-more" href="#">男科</a> -->
+                        </div>
+                        <ul class="cont-items  clearfix">
+                            <li  @click="goto('List')" v-for="list in items" :key="list.id">
+                                <img :src="list.categoryImage" alt=""/>
+                                <span>{{list.categoryName}}</span>
+                            </li>
+                        </ul>
                 </div>
                 
-                <!-- <div class="cont-detail">
-                    <div class="cont-hd">
-                        <a class="cont-more" href="#">内科用药</a>
-                    </div>
-                    <ul class="cont-items  clearfix">
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item1.jpg" alt="">
-                                <span>感冒发烧</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item2.jpg" alt="">
-                                <span>呼吸系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item3.jpg" alt="">
-                                <span>消化系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item4.jpg" alt="">
-                                <span>内分泌药</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item4.jpg" alt="">
-                                <span>内分泌药</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item4.jpg" alt="">
-                                <span>内分泌药</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item2.jpg" alt="">
-                                <span>呼吸系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item3.jpg" alt="">
-                                <span>消化系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item4.jpg" alt="">
-                                <span>内分泌药</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item2.jpg" alt="">
-                                <span>呼吸系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item3.jpg" alt="">
-                                <span>消化系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item2.jpg" alt="">
-                                <span>呼吸系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item3.jpg" alt="">
-                                <span>消化系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item2.jpg" alt="">
-                                <span>呼吸系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item3.jpg" alt="">
-                                <span>消化系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item2.jpg" alt="">
-                                <span>呼吸系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item3.jpg" alt="">
-                                <span>消化系统</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="../img/classily/items/item4.jpg" alt="">
-                                <span>内分泌药</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div> -->
             </div>
         </div>
     </div>
@@ -241,6 +37,7 @@ export default {
         value: "",
         clientHeight:"",
         cates:[],
+        items:[],
         };
     },
     mounted(){
@@ -270,12 +67,19 @@ export default {
     created(){
         this.$axios.get("http://localhost:12345",{
 					params:{
-						rq:"wap/gallery-cate_ajax.html",
-//					q:this.keyword
+                        rq:"https://wcgi.jianke.com/category/api/fullCategories?platform=1",
 					}}).then(res=>{
-            let dataList=res.data;
-            this.cates=dataList.result;
-            // console.log(this.cates[0].son_info[1].son_name);
+            let dataCate=res.data;
+            this.cates=dataCate;
+            // console.log(dataCate);
+        }),
+        this.$axios.get("http://localhost:12345",{
+					params:{
+						rq:"https://wcgi.jianke.com/category/api/fullCategories?pid=191&platform=1",
+					}}).then(res=>{
+            let dataItem=res.data;
+            this.items=dataItem;
+            console.log(dataItem);
         })
     },
 }
@@ -334,20 +138,20 @@ div{
         .cateCont{
             float: left;
             width: 65%;
-            // height: 570px;
+            // height: 570px;/* 测试 */
             overflow-y: auto;
             display: block;
             background-color: #ffffff;
             .cont-detail{
                 .cont-hd{
-                    text-align: center;
-                    height: 60px;
+                    height: 20px;
+                    /* text-align: center;
                     line-height: 60px;
                     background: url(../img/classily/cont-bg.jpg) no-repeat center;
                     background-size: auto;
                     width: 90%;
-                    margin: 0px auto;
-                    .cont-more{
+                    margin: 0px auto; */
+                    /* .cont-more{
                         font-size: 12px;
                         color: #5A5A5A;
                         width: 40%;
@@ -356,19 +160,19 @@ div{
                         background: #fff;
                         display: block;
                         margin: 0px auto;
-                    }
+                    } */
                 }
                 .cont-items{
                     li{
-                        height: 85px;
-                        width: 29%;
+                        height: 120px;
+                        width: 48%;
                         float: left;
                         text-align: center;
                         margin-left: 2%;
                         margin-bottom: 1%;
                         img{
-                                width: 50px;
-                                height: 50px;
+                                width: 70px;
+                                height: 70px;
                                 border-radius: 50%;
                         } 
                         span{
@@ -376,8 +180,9 @@ div{
                             display: block;
                             overflow: hidden;
                             height: 30px;
+                            line-height: 30px;
                             color: #7a7a7a;
-                            font-size: 12px;
+                            font-size: 15px;
                             white-space: nowrap;
                         }
                     }

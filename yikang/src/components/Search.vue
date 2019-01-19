@@ -6,9 +6,9 @@
         </div>
         <mt-search v-model="keyword" cancel-text="搜索" placeholder="请输入搜索词" @input="search">
             <!--搜索结果显示出来的模块<mt-cell>-->
-            <mt-cell v-for="item in items" :key="item.cat_id">
+            <mt-cell v-for="item in items" :key="item.id">
                 <span>
-                    {{item.father_name}}
+                    {{item.productName}}
                 </span>
             </mt-cell>
         </mt-search>
@@ -33,13 +33,12 @@ export default {
             if(!this.keyword) return;
             this.timer=setTimeout(()=>{
                 this.$axios.get("http://localhost:12345",{
-                    params:{
-                        rq:"wap/gallery-cate_ajax.html",
-    //					q:this.keyword
-                    }}).then(res=>{
-                    let dataList=res.data;
-                    this.items=dataList.result;
-                    // console.log(this.items);
+					params:{
+                        rq:"https://fe-wcgi.jianke.com/v1/searchs?cid=5411&pn=1&ps=10",
+					}}).then(res=>{
+                    let dataList=res.data.products.results;
+                    this.items=dataList;
+                    console.log(this.items);
                 })
             },300)
             
