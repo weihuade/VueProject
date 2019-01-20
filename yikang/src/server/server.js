@@ -6,10 +6,24 @@ var request = require("request");
 var app = express();
 app.get("/",(req,res)=>{
   	let data=req.query.rq;
-	console.log(data)
+  	let homedata=req.query.home
     res.append("Access-Control-Allow-Origin","*");
+    if(homedata=="https://fe-wcgi.jianke.com/v1/searchs?cid=5411&pn=1&ps=10"){
+    	request.get("https://fe-wcgi.jianke.com/v1/searchs?cid=5411&pn=1&ps=10",(err,response,body)=>{
 
-    request.get(`http://www.yaoking.cn/${data}`,(err,response,body)=>{
-//      console.log(body);
+				res.send(body)
+		})
+    }
+    else{
+    	 request.get(`http://www.yaoking.cn/${data}`,(err,response,body)=>{
+
+			res.send(body)
+		})
+    }
+    
+
+   
+  
+  
 })
 app.listen(12345)

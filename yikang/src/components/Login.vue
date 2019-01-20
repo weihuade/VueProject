@@ -46,7 +46,7 @@ export default {
         login(){
             const self = this;
             if(self.ruleForm.phone!=='' && self.ruleForm.password!==''){
-                this.$axios.get('http://localhost:6636/user',{
+                this.$axios.get('http://localhost:5555/user',{
                     params:{
                         phone:self.ruleForm.phone,
                         password:self.ruleForm.password

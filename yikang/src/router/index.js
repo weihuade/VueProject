@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+//import Cube from 'cube-ui'
+
 
 Vue.use(Router)
-
+//Vue.use(Cube)
 /* import Home from '@/components/Home';
 import Classily from '@/components/Classily';
 import Search from '@/components/Search';
@@ -45,6 +47,7 @@ const Search = resolve => require(['@/components/Search'], resolve)
 const Homemore = resolve => require(['@/components/Homemore'], resolve)
 const Seckill = resolve => require(['@/components/Seckill'], resolve)
 const Advance = resolve => require(['@/components/Advance'], resolve)
+const Homedetail = resolve => require(['@/components/Homedetail'], resolve)
 // import Home from '@/components/Home';
 // import Classily from '@/components/Classily';
 // import Mine from '@/components/Mine';
@@ -185,7 +188,15 @@ const routes = [
     		component:Advance
     	}
     	]
-    }
+    },
+      {
+          name:'Homedetail',
+           path:'/homedetail',
+           component:Homedetail,
+           meta:{
+            // keepAlive: true,
+          }
+        }
 ];
 const router = new Router({
   routes
