@@ -5,6 +5,7 @@ var request = require("request");
 
 var app = express();
 app.get("/",(req,res)=>{
+<<<<<<< HEAD
   	let data=req.query.rq;
   	let homedata=req.query.home
     res.append("Access-Control-Allow-Origin","*");
@@ -25,5 +26,16 @@ app.get("/",(req,res)=>{
    
   
   
+=======
+      let data=req.query.rq;
+    //   let datas=req.query.rqs;
+	// console.log(data)
+    res.append("Access-Control-Allow-Origin","*");
+    request.get(`${data}`,(err,response,body)=>{
+     console.log(body);
+
+        res.send(body);
+    })
+>>>>>>> 393cd8428063437e05e9d3f3c00071635f86ceb2
 })
 app.listen(12345)

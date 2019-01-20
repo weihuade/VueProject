@@ -48,6 +48,9 @@ const Homemore = resolve => require(['@/components/Homemore'], resolve)
 const Seckill = resolve => require(['@/components/Seckill'], resolve)
 const Advance = resolve => require(['@/components/Advance'], resolve)
 const Homedetail = resolve => require(['@/components/Homedetail'], resolve)
+const List = resolve => require(['@/components/List'], resolve)
+const Detail = resolve => require(['@/components/Detail'], resolve)
+
 // import Home from '@/components/Home';
 // import Classily from '@/components/Classily';
 // import Mine from '@/components/Mine';
@@ -82,7 +85,19 @@ const routes = [
           component:Classily,
           meta:{
             // keepAlive: true
-          }
+          },
+          /* children: [{
+              path: '',
+              redirect: {
+                name: 'Classily'
+              }
+            },
+            {
+              name: 'List',
+              path: 'list',
+              component: List,
+            },
+          ] */
         },
         {
           name:'Cart',
@@ -166,6 +181,22 @@ const routes = [
             // keepAlive: true
           }
         },
+        {
+            name:'List',
+            path:'/list',
+            component:List,
+            meta:{
+              // keepAlive: true
+            }
+        },
+        {
+            name:'Detail',
+            path:'/detail',
+            component:Detail,
+            meta:{
+              // keepAlive: true
+            }
+        },
       {
 //  	name:'Homemore',
     	path:'/homemore',
@@ -196,7 +227,30 @@ const routes = [
            meta:{
             // keepAlive: true,
           }
-        }
+       }
+        //  	name:'Homemore',
+        path: '/homemore',
+        component: Homemore,
+        meta: {
+          // keepAlive: false
+        },
+        children: [{
+            path: '',
+            redirect: {
+              name: 'Seckill'
+            }
+          },
+          {
+            path: 'seckill',
+            name: 'Seckill',
+            component: Seckill
+          }, {
+            path: 'advance',
+            name: 'Advance',
+            component: Advance
+          }
+        ]
+      }
 ];
 const router = new Router({
   routes
