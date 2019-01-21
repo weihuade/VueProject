@@ -8,23 +8,17 @@
             <!-- 侧边栏 -->
             <div class="cateList" ref="listHeight">
                 <ul v-for="lists in cates" :key="lists.id">
-                    <li>{{lists.categoryName}}</li>
+                    <li @click="getData(lists.id,lists.categoryName)" :class="{active : active == lists.categoryName}" >{{lists.categoryName}}</li>
                 </ul>
             </div>
             <!-- 楼层 -->
             <div class="cateCont" ref="contHeight">
-                <div class="cont-detail">
-                        <div class="cont-hd">
-                            <!-- <a class="cont-more" href="#">男科</a> -->
-                        </div>
-                        <ul class="cont-items  clearfix">
-                            <li  @click="goto('List')" v-for="list in items" :key="list.id">
-                                <img :src="list.categoryImage" alt=""/>
-                                <span>{{list.categoryName}}</span>
-                            </li>
-                        </ul>
+                <div class="cont-detail clearfix">
+                    <li v-for="item of items" :key="item.id" @click="goto('List',item.categoryCode)" >
+                        <img :src="item.categoryImage" alt=""/>
+                        <span>{{item.categoryName}}</span>
+                    </li>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -38,6 +32,7 @@ export default {
         clientHeight:"",
         cates:[],
         items:[],
+        active:"name",
         };
     },
     mounted(){
@@ -59,10 +54,22 @@ export default {
             this.$refs.contHeight.style.height = clientHeight-96+ 'px';
             // console.log(clientHeight);
         },
-        goto(name){
-            this.$router.push({name});
-            // console.log(this.$router);
+        goto(name,code){
+            this.$router.push({name,params:{code}});
+            // console.log(this.$route);
         },
+        getData(gid,name){
+            this.$axios.get("http://localhost:12345",{
+                        params:{
+                            rq:`https://wcgi.jianke.com/category/api/fullCategories?pid=${gid}&platform=1`,
+                        }}).then(res=>{
+                let dataCate=res.data;
+                this.items=dataCate;
+                // console.log(this.item1);
+            })
+            this.active = name;
+            console.log(this);
+        }
     },
     created(){
         this.$axios.get("http://localhost:12345",{
@@ -71,15 +78,15 @@ export default {
 					}}).then(res=>{
             let dataCate=res.data;
             this.cates=dataCate;
-            // console.log(dataCate);
+            // console.log(typeof(dataCate),dataCate);
         }),
         this.$axios.get("http://localhost:12345",{
-					params:{
-						rq:"https://wcgi.jianke.com/category/api/fullCategories?pid=191&platform=1",
-					}}).then(res=>{
-            let dataItem=res.data;
-            this.items=dataItem;
-            console.log(dataItem);
+                    params:{
+                        rq:`https://wcgi.jianke.com/category/api/fullCategories?pid=191&platform=1`,
+                    }}).then(res=>{
+            let dataCate=res.data;
+            this.items=dataCate;
+            // console.log(this.item1);
         })
     },
 }
@@ -143,54 +150,39 @@ div{
             display: block;
             background-color: #ffffff;
             .cont-detail{
-                .cont-hd{
-                    height: 20px;
-                    /* text-align: center;
-                    line-height: 60px;
-                    background: url(../img/classily/cont-bg.jpg) no-repeat center;
-                    background-size: auto;
-                    width: 90%;
-                    margin: 0px auto; */
-                    /* .cont-more{
-                        font-size: 12px;
-                        color: #5A5A5A;
-                        width: 40%;
-                        height: 60px;
-                        line-height: 60px;
-                        background: #fff;
+                padding-top: 1.5rem;
+                li{
+                    height: 120px;
+                    width: 48%;
+                    float: left;
+                    text-align: center;
+                    margin-left: 2%;
+                    margin-bottom: 1%;
+                    list-style: none;
+                    img{
+                        width: 70px;
+                        height: 70px;
+                    } 
+                    span{
+                        width: 100%;
                         display: block;
-                        margin: 0px auto;
-                    } */
-                }
-                .cont-items{
-                    li{
-                        height: 120px;
-                        width: 48%;
-                        float: left;
-                        text-align: center;
-                        margin-left: 2%;
-                        margin-bottom: 1%;
-                        img{
-                                width: 70px;
-                                height: 70px;
-                                border-radius: 50%;
-                        } 
-                        span{
-                            width: 100%;
-                            display: block;
-                            overflow: hidden;
-                            height: 30px;
-                            line-height: 30px;
-                            color: #7a7a7a;
-                            font-size: 15px;
-                            white-space: nowrap;
-                        }
+                        overflow: hidden;
+                        height: 30px;
+                        line-height: 30px;
+                        color: #7a7a7a;
+                        font-size: 15px;
+                        white-space: nowrap;
                     }
                 }
             }
         }
         
     }
+    .active {
+        background: url(../img/classily/li-bg.jpg) no-repeat;
+        color: #31c27c;
+    }
+
     .clearfix:after{
         content:'';
         display:block;

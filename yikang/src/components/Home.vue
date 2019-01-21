@@ -427,7 +427,7 @@
 					}}).then(res=>{
 					let recommendd=res
 					this.recommenddata=recommendd.data.products.results
-//					console.log(this.recommenddata)
+					console.log(this.recommenddata)
 					Indicator.close();//请求数据结束关掉loading
 					
 					})
