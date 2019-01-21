@@ -318,7 +318,7 @@
 		<div class="neir_sy">
 			<ul class="c-fix">
 
-				<li class="yaoking-goods" v-for="recommendxx in recommenddata" :key="recommendxx.productCode">
+				<li class="yaoking-goods" v-for="recommendxx in recommenddata" :key="recommendxx.productCode" @click="goto('Detail')">
 					<a>
 						<div class="goods-pic">
 							<img :src="'https://image.jianke.com'+recommendxx.thumbnailUri" alt="复方阿胶浆">
@@ -404,7 +404,7 @@
 				this.timer=setTimeout(()=>{
 				this.$axios.get("http://localhost:12345",{
 					params:{
-						rq:"wap/gallery-cate_ajax.html",
+						rq:"http://www.yaoking.cn/wap/gallery-cate_ajax.html",
 //					q:this.keyword
 					}}).then(res=>{
 				let data=res
