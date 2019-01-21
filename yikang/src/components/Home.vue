@@ -318,7 +318,7 @@
 		<div class="neir_sy">
 			<ul class="c-fix">
 
-				<li class="yaoking-goods" v-for="recommendxx in recommenddata" :key="recommendxx.productCode" @click="goto('Detail')">
+				<li class="yaoking-goods" v-for="recommendxx in recommenddata" :key="recommendxx.productCode" @click="goto('detail')">
 					<a>
 						<div class="goods-pic">
 							<img :src="'https://image.jianke.com'+recommendxx.thumbnailUri" alt="复方阿胶浆">
