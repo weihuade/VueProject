@@ -10,10 +10,10 @@
         <ul class="det-maker">
              <!-- v-for="items" :key="list.id" -->
              <!-- 有点问题 -->
-            <!-- <img :src=`'https://image.jianke.com'+${items.thumbnailUri}` alt=""  class="det-img">
-            <li>{{items.productName}}</li>
+            <img :src="'https://image.jianke.com'+items[0].thumbnailUri" alt=""  class="det-img">
+            <li>{{items[0].productName}}</li>
             <li>噢噢噢噢</li>
-            <li>啪啪啪</li> -->
+            <li>啪啪啪</li>
         </ul>
     </div>
 </template>
@@ -24,11 +24,11 @@ export default {
         items:[],
         };
     },
-    methods:{
+    /* methods:{
         goto(){
             this.$router.push({name:'Classily'});
         },
-    },
+    }, */
     created(){
         this.$axios.get("http://localhost:12345",{
             params:{
@@ -36,7 +36,7 @@ export default {
             }}).then(res=>{
             let dataList=res.data.products.results;
             this.items=dataList;
-            console.log(this.items);
+            console.log(this.items[0].thumbnailUri);
         })
     },
 }

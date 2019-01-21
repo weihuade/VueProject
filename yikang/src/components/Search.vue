@@ -38,9 +38,9 @@ export default {
 					}}).then(res=>{
                     let dataList=res.data.products.results;
                     this.items=dataList;
-                    console.log(this.items);
+                    // console.log(this.items);
                 })
-            },300)
+            },500)
             
         },
     },
