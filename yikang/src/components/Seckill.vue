@@ -1,19 +1,17 @@
 <template>
-
-	<div>
-	  秒杀
+	<div >
+		秒杀
 	</div>
 </template>
 <script>
 	export default {
 	
-  		}
-
-
-<script>
-
+}
+</script>
 
 <style>
 
 
 </style>
+
+

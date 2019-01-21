@@ -7,7 +7,6 @@
 			<mt-search 
 				v-model="keyword"
 				cancel-text 
-				autofocus 
 				placeholder="请输入您需要购买的商品"
 				@input="search" 
 				 >
@@ -23,7 +22,7 @@
 		</div>
 		<!--下一模块开始的位置-->
 		<mt-swipe :auto="4000">
-			<mt-swipe-item v-for="item in recommend" :key="item.id">
+			<mt-swipe-item v-for="item in recommend" :key="item.id" @click.native="gotodetail('Homedetail',item.id)">
 				<img :src="item.path"/>
 			</mt-swipe-item>
 		</mt-swipe>
@@ -104,7 +103,7 @@
 				<!--8-->
 				<li>
 					<div>
-						<img src="../img/homeimg/home-icon7.png" />
+						<img src="../img/homeimg/home-icon8.png" />
 					</div>
 					<p>风湿骨病</p>
 				</li>
@@ -117,7 +116,7 @@
 					<span class="ts">  距离结束        |</span>&nbsp;&nbsp;
 					<span class="time">0-11:0-26:0-11</span>
 				</div>
-				<div class="ms_more" @click="gotomore('Homemore')">更多&gt;</div>
+				<div class="ms_more" @click="goto('Homemore')">更多&gt;</div>
 			</a>
 			<div class="index_topic">
 				<ul>
@@ -319,56 +318,16 @@
 		<div class="neir_sy">
 			<ul class="c-fix">
 
-				<li class="yaoking-goods">
+				<li class="yaoking-goods" v-for="recommendxx in recommenddata" :key="recommendxx.productCode" @click="goto('Detail')">
 					<a>
 						<div class="goods-pic">
-							<img src="http://img1.yaoking.cn//cd/33/05/483310698c2a0b103548cfeb54c688e4791.jpg@170w_170h?1546655631#h" alt="复方阿胶浆">
+							<img :src="'https://image.jianke.com'+recommendxx.thumbnailUri" alt="复方阿胶浆">
 						</div>
 						<div class="goods-name">
-							<span>抢</span> 复方阿胶浆 </div>
+							<span>抢</span> {{recommendxx.productName}} </div>
 						<p class="goods-price-info">
-							<span class="price">￥498.00</span>
-							<del>498.000</del>
-						</p>
-					</a>
-				</li>
-
-				<li class="yaoking-goods">
-					<a>
-						<div class="goods-pic">
-							<img src="http://img1.yaoking.cn//a7/29/47/b9e19947f92be37751600f0454de6292377.jpg@170w_170h?1546655165#h" alt="复方阿胶浆">
-						</div>
-						<div class="goods-name">
-							<span>抢</span> 复方阿胶浆 </div>
-						<p class="goods-price-info">
-							<span class="price">￥498.00</span>
-							<del>498.000</del>
-						</p>
-					</a>
-				</li>
-				<li class="yaoking-goods">
-					<a>
-						<div class="goods-pic">
-							<img src="http://img1.yaoking.cn/3b/29/9c/4021d270ee45f43e35ab8cfa8879ee2734b69fbe.jpg@170w_170h?1470815530#h" alt="复方阿胶浆">
-						</div>
-						<div class="goods-name">
-							<span>抢</span> 复方阿胶浆 </div>
-						<p class="goods-price-info">
-							<span class="price">￥498.00</span>
-							<del>498.000</del>
-						</p>
-					</a>
-				</li>
-				<li class="yaoking-goods">
-					<a>
-						<div class="goods-pic">
-							<img src="http://img1.yaoking.cn//c2/5b/cc/c9f3a8e16b8446a77d93c1445cff90ca12b.jpg@170w_170h?1523850195#h" alt="复方阿胶浆">
-						</div>
-						<div class="goods-name">
-							<span>抢</span> 复方阿胶浆 </div>
-						<p class="goods-price-info">
-							<span class="price">￥498.00</span>
-							<del>498.000</del>
+							<span class="price">￥{{((recommendxx.lowestPrice)/100).toFixed(2)}}</span>
+							<del>{{((recommendxx.marketPrice)/100).toFixed(2)}}</del>
 						</p>
 					</a>
 				</li>
@@ -393,10 +352,14 @@
 </template>
 
 <script>
+	import { Indicator } from 'mint-ui';
 	export default {
 		props:['keyword'],
 		data() {
 			return {
+				Indicator:'',
+				recommenddata:[],
+				indexCity:{},
 				timer:null,
 				result:[],
 				clientHeight: "",
@@ -424,9 +387,11 @@
 			goto(name) {
 				this.$router.push(name);
 			},
-			gotomore(name){
-				this.$router.push(name);
+			gotodetail(name,id){
+				this.$router.push({name,params:{id}})//跳转的时候将id带过去
 			},
+
+
 
 			changeFixed(clientHeight) { //动态修改样式
 				//             console.log(clientHeight);
@@ -439,34 +404,42 @@
 				this.timer=setTimeout(()=>{
 				this.$axios.get("http://localhost:12345",{
 					params:{
-						rq:"wap/gallery-cate_ajax.html",
+						rq:"http://www.yaoking.cn/wap/gallery-cate_ajax.html",
 //					q:this.keyword
 					}}).then(res=>{
 				let data=res
 				this.result=data.data.result
-				console.log(this.result)
+//				console.log(this.result)
 				})
 				},1000)
-				
+				//https://image.jianke.com
+				//https://fe-wcgi.jianke.com/v1/searchs?cid=5411&pn=1&ps=10
 			},
+			 
 		},
-		mounted() {
-			this.clientHeight = `${document.documentElement.clientHeight}`
-			window.onresize = function temp() {
-				this.clientHeight = `${document.documentElement.clientHeight}`;
+		created(){
+				clearTimeout(this.timer);
+				Indicator.open('Loading...')//loading开始
+				this.timer=setTimeout(()=>{
+			    this.$axios.get("http://localhost:12345",{
+					params:{
+						home:"https://fe-wcgi.jianke.com/v1/searchs?cid=5411&pn=1&ps=10"
+					}}).then(res=>{
+					let recommendd=res
+					this.recommenddata=recommendd.data.products.results
+//					console.log(this.recommenddata)
+					Indicator.close();//请求数据结束关掉loading
+					
+					})
+				},1000)
 			}
-		},
-		watch: {
-			// 如果 `clientHeight` 发生改变，这个函数就会运行
-			clientHeight: function() {
-				this.changeFixed(this.clientHeight)
-			}
-		},
 
 	}
 </script>
 
 <style lang="scss">
+
+	
 	.page {
 		background: #f2f2f2;
 		max-width: 640px;
@@ -479,6 +452,12 @@
 			width: 100%;
 			height: 52.5px;
 			background: #31c27c;
+			position:fixed;
+			z-index:100;
+			top:0px;
+			max-width: 640px;
+			min-width: 320px;
+			margin: 0px auto;
 			.pic {
 				float: left;
 				width: 10%;
@@ -534,15 +513,23 @@
 		}
 		/*header模块结束*/
 		.mint-search-list {
-			top: 9px;
-			z-index: 2;
+			margin-top:8px;
+			overflow: auto;
+		    bottom: 0;
+		    left:14% ;
+		    position: absolute;
+		    height:200px;
+		    width: 68%;
+		    text-align: center;
+		    opacity: 0.9;
 		}
 		.mint-swipe {
 			max-height: 239.06px;
 			margin-bottom: 4px;
+			margin-top:52.5px ;
 			.mint-swipe-items-wrap {
 				overflow: initial;
-				min-height: 150px;
+				min-height: 27vh;
 				max-height: 239.06px;
 				img {
 					height: 100%;

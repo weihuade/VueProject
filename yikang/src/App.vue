@@ -22,6 +22,9 @@
 	Vue.use(myicons);
 	//	
 	//	
+//	import Cube from 'cube-ui'
+//	Vue.use(Cube)
+	
 	//	//引入并使用Mintui
 	import MintUI from 'mint-ui';
 	Vue.use(MintUI)

@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+//import Cube from 'cube-ui'
+
 
 Vue.use(Router)
-
+//Vue.use(Cube)
 /* import Home from '@/components/Home';
 import Classily from '@/components/Classily';
 import Search from '@/components/Search';
@@ -45,6 +47,7 @@ const Search = resolve => require(['@/components/Search'], resolve)
 const Homemore = resolve => require(['@/components/Homemore'], resolve)
 const Seckill = resolve => require(['@/components/Seckill'], resolve)
 const Advance = resolve => require(['@/components/Advance'], resolve)
+const Homedetail = resolve => require(['@/components/Homedetail'], resolve)
 const List = resolve => require(['@/components/List'], resolve)
 const Detail = resolve => require(['@/components/Detail'], resolve)
 // import Home from '@/components/Home';
@@ -194,29 +197,36 @@ const routes = [
             }
         },
       {
-        //  	name:'Homemore',
-        path: '/homemore',
-        component: Homemore,
-        meta: {
-          // keepAlive: false
-        },
-        children: [{
-            path: '',
-            redirect: {
-              name: 'Seckill'
-            }
-          },
-          {
-            path: 'seckill',
-            name: 'Seckill',
-            component: Seckill
-          }, {
-            path: 'advance',
-            name: 'Advance',
-            component: Advance
+//  	name:'Homemore',
+    	path:'/homemore',
+      component:Homemore,
+      meta:{
+        // keepAlive: false
+      },
+    	children:[
+    		{
+    		path:'',
+    		redirect:{name:'Seckill'}
+    	},
+    	{
+    		path:'seckill',
+    		name:'Seckill',
+    		component:Seckill
+    	},{
+    		path:'advance',
+    		name:'Advance',
+    		component:Advance
+    	}
+    	]
+    },
+      {
+          name:'Homedetail',
+           path:'/homedetail',
+           component:Homedetail,
+           meta:{
+            // keepAlive: true,
           }
-        ]
-      }
+       }
 ];
 const router = new Router({
   routes
