@@ -74,7 +74,6 @@ export default {
         this.clientHeight=`${document.documentElement.clientHeight}`
         window.onresize=function temp(){
             this.clientHeight=`${document.documentElement.clientHeight}`;
-            // console.log(this.clientHeight);
         }
     },
     watch: {
@@ -87,7 +86,6 @@ export default {
         //动态修改样式
         changeFixed(clientHeight){                        
             this.$refs.listsHeight.style.height = clientHeight-43+ 'px';
-            // console.log(clientHeight);
         },
         goto(name,id){
             this.$router.push({name,params:{id}});
@@ -96,7 +94,6 @@ export default {
     },
     created(){
         let cid=this.$route.params.code;
-        // console.log(cid);
         this.$axios.get("http://localhost:12345",{
 					params:{
                         rq:`https://fe-wcgi.jianke.com/v1/searchs?cid=${cid}&pn=1&ps=10`,

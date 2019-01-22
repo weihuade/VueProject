@@ -39,7 +39,6 @@ export default {
         this.clientHeight=`${document.documentElement.clientHeight}`
         window.onresize=function temp(){
             this.clientHeight=`${document.documentElement.clientHeight}`;
-            // console.log(this.clientHeight);
         }
     },
     watch: {
@@ -52,11 +51,9 @@ export default {
         changeFixed(clientHeight){                        //动态修改样式
             this.$refs.listHeight.style.height = clientHeight-96+ 'px';
             this.$refs.contHeight.style.height = clientHeight-96+ 'px';
-            // console.log(clientHeight);
         },
         goto(name,code){
             this.$router.push({name,params:{code}});
-            // console.log(this.$route);
         },
         getData(gid,name){
             this.$axios.get("http://localhost:12345",{
@@ -65,10 +62,9 @@ export default {
                         }}).then(res=>{
                 let dataCate=res.data;
                 this.items=dataCate;
-                // console.log(this.item1);
             })
             this.active = name;
-            console.log(this);
+            // console.log(this);
         }
     },
     created(){
@@ -78,7 +74,6 @@ export default {
 					}}).then(res=>{
             let dataCate=res.data;
             this.cates=dataCate;
-            // console.log(typeof(dataCate),dataCate);
         }),
         this.$axios.get("http://localhost:12345",{
                     params:{
@@ -86,7 +81,6 @@ export default {
                     }}).then(res=>{
             let dataCate=res.data;
             this.items=dataCate;
-            // console.log(this.item1);
         })
     },
 }
