@@ -47,6 +47,7 @@ export default {
         login(){
             const self = this;
             if(self.ruleForm.phone!=='' && self.ruleForm.password!==''){
+<<<<<<< HEAD
                 /** 
                     MessageBox('提示', '登录成功');
                     sessionStorage.setItem('token',new Date().getTime());
@@ -65,6 +66,9 @@ export default {
                /**
                 * 这是原来的请求方式
                 * this.$axios.post('/login',{
+=======
+                this.$axios.get('http://localhost:5555/user',{
+>>>>>>> c0fda97ff6ad4ef26d6c06cf5b75985a6150ea38
                     params:{
                         phone:self.ruleForm.phone,
                         password:self.ruleForm.password

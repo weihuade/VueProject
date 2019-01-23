@@ -20,7 +20,16 @@
 	import myicons from '@/plugins/icons';
 	//使用插件
 	Vue.use(myicons);
+<<<<<<< HEAD
 	//引入并使用Mintui
+=======
+	//	
+	//	
+//	import Cube from 'cube-ui'
+//	Vue.use(Cube)
+	
+	//	//引入并使用Mintui
+>>>>>>> c0fda97ff6ad4ef26d6c06cf5b75985a6150ea38
 	import MintUI from 'mint-ui';
 	Vue.use(MintUI)
 	import "mint-ui/lib/style.css";
