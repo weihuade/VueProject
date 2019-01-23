@@ -1,11 +1,7 @@
 <template>
     <div id="cart" class="pages">
         <div class="title">
-            <mt-header title="购物车">
-                <router-link to="/" slot="left">
-                    <mt-button icon="back" @click="$router.back(-1)"></mt-button>
-                </router-link>
-            </mt-header>
+            <myheader :title="data.title" :path="data.path"/>
         </div>
         <div class="main">
             <div>
@@ -23,13 +19,27 @@
 
 
 <script>
-import Vue from 'vue';
+import myheader from './common/header';
 import '../sass/common.scss';
 export default {
+    components:{
+        myheader,
+    },
+    data(){
+        return{
+            data:{
+                path:'/home',
+                title:'购物车',
+            },
+        }
+    },
     methods:{
         goto(path){
             this.$router.push({path})
         }
+    },
+    created(){
+
     }
 }
 </script>

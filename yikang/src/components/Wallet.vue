@@ -1,11 +1,7 @@
 <template>
 <div id="wallet">
     <div class="title">
-        <mt-header title="我的钱包">
-            <router-link to="/mine" slot="left">
-                <mt-button icon="back" @click="goBack"></mt-button>
-            </router-link>
-        </mt-header>
+        <myheader :title="data.title" :path="data.path"/>
     </div>
     <div class="main">
         <mt-cell title="余额" is-link value="查看"></mt-cell>
@@ -17,13 +13,21 @@
 
 <script>
 import '../sass/common.scss';
+import myheader from './common/header';
 export default {
-    methods:{
-        goBack () {
-            window.history.length > 1
-                ? this.$router.go(-1)
-                : this.$router.push('/')
+    components:{
+        myheader,
+    },
+    data(){
+        return{
+            data:{
+                path:'/mine',
+                title:'我的钱包',
+            },
         }
+    },
+    methods:{
+
     }
 }
 </script>
@@ -32,9 +36,10 @@ export default {
 #wallet{
     .main{
         overflow: hidden;
-        padding: 0;
-        margin-top: 0;
+        position: absolute;
+        top: 52.5px;
         background: #f7f7f7;
+        margin-top: 0;
         a.mint-cell{
             width: 100%;
             height: 60px;

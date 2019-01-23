@@ -1,11 +1,7 @@
 <template>
 <div id="wallet">
     <div class="title">
-        <mt-header title="修改密码">
-            <router-link to="/mine" slot="left">
-                <mt-button icon="back" @click="goBack"></mt-button>
-            </router-link>
-        </mt-header>
+        <myheader :title="data.title" :path="data.path"/>
     </div>
     <div class="main">
         <mt-field placeholder="旧密码"></mt-field>
@@ -27,9 +23,17 @@
 
 <script>
 import '../sass/common.scss';
+import myheader from './common/header';
 export default {
+    components:{
+        myheader,
+    },
     data(){
         return{
+            data:{
+                path:'/changePW',
+                title:'修改密码',
+            },
             eye:false,
             imgSrc:[
                 '../../static/img/mine/closeEye.png',
@@ -49,6 +53,10 @@ export default {
 
 <style lang="scss" scoped>
     #wallet{
+        div.main{
+            margin-top: 52.5px;
+            // padding: 0;
+        }
         .btn-bar{
             margin-top: 20px;
         }

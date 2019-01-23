@@ -64,3 +64,10 @@ $color-primary: #31c27c;
 .mint-cell-allow-right::after{
   margin-top: 4px;
 }
+#addAdress{
+  div.main{
+    input.mint-field-core{
+      padding: 0;
+    }
+  }
+}

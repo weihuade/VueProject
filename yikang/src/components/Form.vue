@@ -1,24 +1,28 @@
 <template>
 <div id="form">
     <div class="title">
-        <mt-header title="我的订单">
-            <router-link to="/mine" slot="left">
-                <mt-button icon="back" @click="goBack"></mt-button>
-            </router-link>
-        </mt-header>
+        <myheader :title="data.title" :path="data.path"/>
     </div>
 </div>
 </template>
 
 <script>
 import '../sass/common.scss';
+import myheader from './common/header';
 export default {
-    methods:{
-        goBack () {
-            window.history.length > 1
-                ? this.$router.go(-1)
-                : this.$router.push('/')
+    components:{
+        myheader,
+    },
+    data(){
+        return{
+            data:{
+                path:'/mine',
+                title:'我的订单',
+            },
         }
+    },
+    methods:{
+        
     }
 }
 </script>

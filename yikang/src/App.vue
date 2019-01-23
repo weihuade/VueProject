@@ -18,11 +18,9 @@
 
 	//引入插件
 	import myicons from '@/plugins/icons';
-	//	//使用插件
+	//使用插件
 	Vue.use(myicons);
-	//	
-	//	
-	//	//引入并使用Mintui
+	//引入并使用Mintui
 	import MintUI from 'mint-ui';
 	Vue.use(MintUI)
 	import "mint-ui/lib/style.css";

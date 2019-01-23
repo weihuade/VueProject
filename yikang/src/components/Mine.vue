@@ -59,19 +59,17 @@
 import { MessageBox } from 'mint-ui';
 import { Cell } from 'mint-ui';
 export default {
-    // beforeRouteEnter(to, from, next){
-    //     console.log("from:",from)
-    //     next({query:{redirect:from.fullPath}})
-    // },
     methods:{
         logout(){
+            let token = localStorage.getItem("token");
             MessageBox('提示', '退出成功');
-            sessionStorage.removeItem('token');
             setTimeout(()=>{
                 this.$router.push({path:'/login'})
             },1000)
+            this.$store.dispatch('UserLogout');//登出
+            // localStorage.removeItem('token');
         }
-    }
+    },
 }
 </script>
 
