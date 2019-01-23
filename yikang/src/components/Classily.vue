@@ -7,14 +7,14 @@
         <div class="catesNav clearfix">
             <!-- 侧边栏 -->
             <div class="cateList" ref="listHeight">
-                <ul v-for="lists in cates" :key="lists.id">
-                    <li @click="getData(lists.id,lists.categoryName)" :class="{active : active == lists.categoryName}" >{{lists.categoryName}}</li>
+                <ul>
+                    <li  v-for="(lists,idx) in cates" :key="lists.id" @click="getData(lists.id,idx)" :class="activeId==idx?active:''">{{lists.categoryName}}</li>
                 </ul>
             </div>
             <!-- 楼层 -->
             <div class="cateCont" ref="contHeight">
                 <div class="cont-detail clearfix">
-                    <li v-for="item of items" :key="item.id" @click="goto('List',item.categoryCode)" >
+                    <li v-for="item of items" :key="item.id" @click="goto('List',item.categoryCode)">
                         <img :src="item.categoryImage" alt=""/>
                         <span>{{item.categoryName}}</span>
                     </li>
@@ -32,7 +32,8 @@ export default {
         clientHeight:"",
         cates:[],
         items:[],
-        active:"name",
+        activeId:0,
+        active:"active",
         };
     },
     mounted(){
@@ -53,9 +54,10 @@ export default {
             this.$refs.contHeight.style.height = clientHeight-96+ 'px';
         },
         goto(name,code){
-            this.$router.push({name,params:{code}});
+            this.$router.push({name,params:{code:code}});
         },
-        getData(gid,name){
+        getData(gid,idx){
+            this.activeId=idx;
             this.$axios.get("http://localhost:12345",{
                         params:{
                             rq:`https://wcgi.jianke.com/category/api/fullCategories?pid=${gid}&platform=1`,
@@ -63,8 +65,7 @@ export default {
                 let dataCate=res.data;
                 this.items=dataCate;
             })
-            this.active = name;
-            // console.log(this);
+            // console.log(this.activeId);
         }
     },
     created(){
@@ -132,8 +133,13 @@ div{
                 height: 60px;
                 background: url(../img/classily/li-bg.jpg) no-repeat;
                 background-size: auto 100%;
-                text-indent: 28px;
-                font-size: 14px;
+                text-indent: 35px;
+                // font-size: 14px;
+            }
+            .active {
+                background: url(../img/classily/li-click.jpg) no-repeat;
+                background-size: auto 100%;
+                color: #31c27c;
             }
         }
         .cateCont{
@@ -171,10 +177,6 @@ div{
             }
         }
         
-    }
-    .active {
-        background: url(../img/classily/li-bg.jpg) no-repeat;
-        color: #31c27c;
     }
 
     .clearfix:after{

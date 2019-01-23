@@ -32,7 +32,7 @@
                     <li>筛选</li>
                 </ul>
                 <ul class="pt-list clearfix">
-                    <li @click="goto('Detail',items.id)" v-for="items in list" :key="items.id">
+                    <li @click="goto('Detail',items.productCode)" v-for="items in list" :key="items.id">
                         <img :src="'https://image.jianke.com'+items.thumbnailUri" alt=""  class="pt-img">
                         <div class="pt-name">{{items.productName}}</div>
                         <div class="pt-price">￥：{{((items.lowestPrice)/100).toFixed(2)}}</div>
@@ -57,6 +57,7 @@
 <script>
 import Vue from 'vue';
 import myicons from '../plugins/icons';
+import { Indicator } from 'mint-ui';
 //	//使用插件
 Vue.use(myicons);
 export default {
@@ -68,6 +69,7 @@ export default {
             icon: 'list-unordered'
         }],
         list:[],
+        timer:null,
         };
     },
     mounted(){
@@ -87,21 +89,26 @@ export default {
         changeFixed(clientHeight){                        
             this.$refs.listsHeight.style.height = clientHeight-43+ 'px';
         },
-        goto(name,id){
-            this.$router.push({name,params:{id}});
+        goto(name,pcode){
+            this.$router.push({name,params:{pcode:pcode}});
             // console.log(this.$route);
         },
     },
     created(){
         let cid=this.$route.params.code;
+        clearTimeout(this.timer);
+        Indicator.open('Loading...')//loading开始
+        this.timer=setTimeout(()=>{
         this.$axios.get("http://localhost:12345",{
 					params:{
                         rq:`https://fe-wcgi.jianke.com/v1/searchs?cid=${cid}&pn=1&ps=10`,
 					}}).then(res=>{
             let dataList=res.data.products.results;
             this.list=dataList;
-            // console.log(typeof(this.list[0].thumbnailUr));
+            console.log(this.list);
+            Indicator.close();//请求数据结束关掉loading
         })
+        },300)
     },
 }
 </script>
@@ -248,8 +255,6 @@ export default {
                     padding: 1px 5px 2px;
                     margin: 0 2px;
                     color: #666;
-                    // border: 1px solid #ddd;
-                    // background: #fff;
                 }
             }
         }

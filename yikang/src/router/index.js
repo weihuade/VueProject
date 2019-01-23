@@ -182,7 +182,7 @@ const routes = [
         },
         {
             name:'List',
-            path:'/list',
+            path:'/list/:code',
             component:List,
             meta:{
               // keepAlive: true
@@ -190,7 +190,7 @@ const routes = [
         },
         {
             name:'Detail',
-            path:'/detail',
+            path:'/detail/:pcode',
             component:Detail,
             meta:{
               // keepAlive: true
