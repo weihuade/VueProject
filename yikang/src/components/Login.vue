@@ -47,14 +47,13 @@ export default {
         login(){
             const self = this;
             if(self.ruleForm.phone!=='' && self.ruleForm.password!==''){
-<<<<<<< HEAD
-                /** 
+                /*
                     MessageBox('提示', '登录成功');
                     sessionStorage.setItem('token',new Date().getTime());
-                        setTimeout(()=>{
-                        // this.$router.replace({path:'/mine'})
-                        this.$router.goBack();
-                    },1000)
+//                      setTimeout(()=>{
+                           this.$router.push({path:'/mine'})
+//                      this.$router.goBack();
+//                  },1000)
                     if(self.checked == true){
                         //传入账号名，密码，和保存天数3个参数
                         self.setCookie(self.ruleForm.phone, self.ruleForm.password, 7);
@@ -66,9 +65,8 @@ export default {
                /**
                 * 这是原来的请求方式
                 * this.$axios.post('/login',{
-=======
-                this.$axios.get('http://localhost:5555/user',{
->>>>>>> c0fda97ff6ad4ef26d6c06cf5b75985a6150ea38
+
+                this.$axios.get('http://59.110.138.64:5555/user',{
                     params:{
                         phone:self.ruleForm.phone,
                         password:self.ruleForm.password
@@ -110,7 +108,7 @@ export default {
         goto(path){
             this.$router.push({path})
         },
-
+//
         goBack () {
             window.history.length > 1
                 ? this.$router.go(-1)
@@ -154,4 +152,9 @@ export default {
 
 <style lang="scss" scoped>
 // 样式放在sass/common.scss文件夹中,购物车、登陆注册都共用一些样式
+#login{
+	div.main{
+		margin-top: 52.5px;
+	}
+}
 </style>

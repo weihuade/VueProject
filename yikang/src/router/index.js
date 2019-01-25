@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-<<<<<<< HEAD
 import store from '../store/index.js'
 import api from '../api';
 Vue.use(Router)
@@ -251,7 +250,8 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   //获取store里面的token
-  let token = store.state.token;
+//let token = sessionStorage.getItem('token')
+	let token = store.state.token;
   console.log("local==",token);
   //设置全局路由守卫后要进入to路由，必须调用next()方法
   if(to.meta.requiresAuth){//判断是否登陆
@@ -274,13 +274,13 @@ router.beforeEach((to, from, next) => {
       next();
   }
   // /*如果本地 存在 token 则 不允许直接跳转到 登录页面*/
-  if(to.fullPath == "/login" || to.fullPath == "/reg"){
-    if(token){
-      next({path:from.fullPath});
-    }else {
-      next();
-    }
-  }
+	if(to.fullPath == "/login" || to.fullPath == "/reg"){
+	    if(token){
+	      next({path:from.fullPath});
+	    }else {
+	      next();
+	    }
+	}
 })
 
 export default router;

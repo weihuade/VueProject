@@ -2,12 +2,17 @@ import axios from 'axios'
 import store from '../store'
 import router from '../router'
 
+const isProdMode = Object.is(process.env.NODE_ENV,'production');
+const baseURL = isProdMode ? 'http://59.110.138.64:3000' : '/login';
+
 //设置全局axios默认值
 axios.defaults.timeout = 5000; //5000的超时验证
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
 //创建一个axios实例
-const instance = axios.create();
+const instance = axios.create({
+	baseURL : baseURL
+});
 instance.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
 axios.interceptors.request.use = instance.interceptors.request.use;

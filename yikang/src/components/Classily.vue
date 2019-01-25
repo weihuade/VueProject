@@ -58,7 +58,7 @@ export default {
         },
         getData(gid,idx){
             this.activeId=idx;
-            this.$axios.get("http://localhost:12345",{
+            this.$axios.get("http://59.110.138.64:12345",{
                         params:{
                             rq:`https://wcgi.jianke.com/category/api/fullCategories?pid=${gid}&platform=1`,
                         }}).then(res=>{
@@ -69,14 +69,14 @@ export default {
         }
     },
     created(){
-        this.$axios.get("http://localhost:12345",{
+        this.$axios.get("http://59.110.138.64:12345",{
 					params:{
                         rq:"https://wcgi.jianke.com/category/api/fullCategories?platform=1",
 					}}).then(res=>{
             let dataCate=res.data;
             this.cates=dataCate;
         }),
-        this.$axios.get("http://localhost:12345",{
+        this.$axios.get("http://59.110.138.64:12345",{
                     params:{
                         rq:`https://wcgi.jianke.com/category/api/fullCategories?pid=191&platform=1`,
                     }}).then(res=>{

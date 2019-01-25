@@ -32,17 +32,10 @@
 				<li><img src="../img/homeimg/laba.png" /></li>
 				<li>
 					<div id="myscroll">
-						<a title="怡康医药“24小时药店”开通">
-							<div>怡康医药“24小时药店”开通</div>
+						<a :title="text.title"  v-for="(text, index) in arr" :key="index">
+							<div>{{text.title}}</div>
 							<div>
-								<span>公告</span> 昼夜守候，贴心服务！
-							</div>
-						</a>
-						<!--第二个-->
-						<a title="怡康医药“24小时药店”开通">
-							<div>怡康医药“24小时药店”开通</div>
-							<div>
-								<span>公告</span> 昼夜守候，贴心服务！
+								<span>{{text.intensive}}</span> {{text.hint}}
 							</div>
 						</a>
 					</div>
@@ -318,7 +311,7 @@
 		<div class="neir_sy">
 			<ul class="c-fix">
 
-				<li class="yaoking-goods" v-for="recommendxx in recommenddata" :key="recommendxx.productCode" @click="goto('detail')">
+				<li class="yaoking-goods" v-for="recommendxx in recommenddata" :key="recommendxx.productCode" @click="goto('Detail',recommendxx.productCode)">
 					<a>
 						<div class="goods-pic">
 							<img :src="'https://image.jianke.com'+recommendxx.thumbnailUri" alt="复方阿胶浆">
@@ -379,13 +372,35 @@
 						id: 4,
 						path: require('../img/slideshow/slideshow4.jpg')
 					},
-				]
+				],
+				arr:[{
+						title:"门店配送订单时间",
+						intensive:"提示",
+						hint:"09:00-21:00（21:00后订单次日09:00后配送）"
+					},{
+						title:"订单自提时间",
+						intensive:"提示",
+						hint:"怡康门店正常营业时间均可到店自提"
+					},{
+						title:"同仁堂阿胶",
+						intensive:"御制",
+						hint:"皇亲贵器同仁堂御制金装阿胶"
+					},{
+						title:"怡康医药“24小时药店”开通",
+						intensive:"公告",
+						hint:"昼夜守候，贴心服务！"
+					},{
+						title:"门店配送订单时间",
+						intensive:"提示",
+						hint:"09:00-21:00（21:00后订单次日09:00后配送）"
+					}
+				],
 			}
 		},
 		methods: {
 			//路由跳转
-			goto(name) {
-				this.$router.push(name);
+			goto(name,pcode) {
+				this.$router.push({name,params:{pcode}});
 			},
 			gotodetail(name,id){
 				this.$router.push({name,params:{id}})//跳转的时候将id带过去
@@ -402,7 +417,7 @@
 				clearTimeout(this.timer);
 				if(!this.keyword) return;
 				this.timer=setTimeout(()=>{
-				this.$axios.get("http://localhost:12345",{
+				this.$axios.get("http://59.110.138.64:12345",{
 					params:{
 						rq:"http://www.yaoking.cn/wap/gallery-cate_ajax.html",
 //					q:this.keyword
@@ -421,7 +436,7 @@
 				clearTimeout(this.timer);
 				Indicator.open('Loading...')//loading开始
 				this.timer=setTimeout(()=>{
-			    this.$axios.get("http://localhost:12345",{
+			    this.$axios.get("http://59.110.138.64:12345",{
 					params:{
 						home:"https://fe-wcgi.jianke.com/v1/searchs?cid=5411&pn=1&ps=10"
 					}}).then(res=>{
@@ -438,7 +453,6 @@
 </script>
 
 <style lang="scss">
-
 	
 	.page {
 		background: #f2f2f2;
@@ -569,12 +583,17 @@
 			ul li:nth-child(3) {
 				width: 67.14%;
 				#myscroll {
+					text-overflow: ellipsis;
+					white-space: nowrap;
 					width: 100%;
 					font-size: 12px;
 					height: 60px;
 					overflow: hidden;
 					margin-top: 0px;
+					
 					a {
+						animation: myMove 8s linear infinite;
+  						animation-fill-mode: forwards;
 						width: 100%;
 						height: 60px;
 						overflow: hidden;
@@ -1085,5 +1104,35 @@
 			}
 		}
 	}
+@keyframes myMove{
+  0% {
+    transform: translateY(0);
+  }
+  12.5% {
+    transform: translateY(-60px);
+  }
+  25% {
+    transform: translateY(-60px);
+  }
+  37.5% {
+    transform: translateY(-120px);
+  }
+  50% {
+    transform: translateY(-120px);
+  }
+  62.5% {
+    transform: translateY(-180px);
+  }
+  75% {
+    transform: translateY(-180px);
+  }
+  87.5% {
+    transform: translateY(-240px);
+  }
+  100% {
+    transform: translateY(-240px);
+  }
+}
+
 
 </style>

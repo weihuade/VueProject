@@ -99,7 +99,7 @@ export default {
         clearTimeout(this.timer);
         Indicator.open('Loading...')//loading开始
         this.timer=setTimeout(()=>{
-        this.$axios.get("http://localhost:12345",{
+        this.$axios.get("http://59.110.138.64:12345",{
 					params:{
                         rq:`https://fe-wcgi.jianke.com/v1/searchs?cid=${cid}&pn=1&ps=10`,
 					}}).then(res=>{

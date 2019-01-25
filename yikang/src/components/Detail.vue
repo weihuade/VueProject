@@ -44,9 +44,9 @@
                     <dt>选择：</dt> 
                     <dd>点击选择商品数量</dd> 
                 </dl>
-                <mt-actionsheet :actions="actions" v-model="sheetVisible">
+                <!--<mt-actionsheet :actions="actions" v-model="sheetVisible">
                     <span>不出来就死</span>
-                </mt-actionsheet>
+                </mt-actionsheet>-->
             </ul>
             <span><a class="flip">- - - - 点击查看详情 - - - -</a></span>
         </div>
@@ -67,7 +67,7 @@ export default {
     created(){
         let pid=this.$route.params.pcode;
         console.log(pid);
-        this.$axios.get("http://localhost:12345",{
+        this.$axios.get("http://59.110.138.64:12345",{
             params:{
                 // rq:"https://fe-wcgi.jianke.com/v1/searchs?cid=5411&pn=1&ps=10",
                 rq:`https://fe-wcgi.jianke.com/v1/products/${pid}?main=%E2%9C%93`,

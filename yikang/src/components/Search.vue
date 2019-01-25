@@ -32,7 +32,7 @@ export default {
             clearTimeout(this.timer);
             if(!this.keyword) return;
             this.timer=setTimeout(()=>{
-                this.$axios.get("http://localhost:12345",{
+                this.$axios.get("http://59.110.138.64:12345",{
 					params:{
                         rq:"https://fe-wcgi.jianke.com/v1/searchs?cid=5411&pn=1&ps=10",
                         // rq:this.keyword,
@@ -42,7 +42,7 @@ export default {
                     // console.log(this.items);
                 })
             },500)
-            
+        
         },
     },
 }

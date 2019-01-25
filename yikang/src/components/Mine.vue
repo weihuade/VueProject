@@ -3,7 +3,7 @@
     <div class="mine-head">
         <div class="margin"></div>
         <div class="profile">
-            <a><img src="../../static/img/mine/profile.png" alt="头像"></a>
+            <a><img src="../img/mine/profile.png" alt="头像"></a>
         </div>
         <div class="info">
             <span class="inf-left">用户账户</span>
@@ -11,7 +11,7 @@
         </div>
         <div class="favorite">
             <span class="f-icon">
-                <img src="../../static/img/mine/star.png" alt="">
+                <img src="../img/mine/star.png" alt="">
             </span>
             <span class="f-right">
                 <a href="#">我的收藏</a>
@@ -21,16 +21,16 @@
     <div class="mine-main">
         <mt-cell title="我的订单" is-link to="/form" class="form">
             <span>查看所有订单</span>
-            <img slot="icon" src="../../static/img/mine/iconform.png" width="17" height="23">
+            <img slot="icon" src="../img/mine/iconform.png" width="17" height="23">
         </mt-cell>
         <mt-cell title="我的钱包" is-link to="/wallet" class="border-b">
-            <img slot="icon" src="../../static/img/mine/iconqb.png" width="17" height="23">
+            <img slot="icon" src="../img/mine/iconqb.png" width="17" height="23">
         </mt-cell>
         <mt-cell title="修改密码" is-link to="/changePW" class="border-b">
-            <img slot="icon" src="../../static/img/mine/iconmm.png" width="17" height="23">
+            <img slot="icon" src="../img/mine/iconmm.png" width="17" height="23">
         </mt-cell>
         <mt-cell title="地址管理" is-link to="/setLocation" class="border-b last-border">
-            <img slot="icon" src="../../static/img/mine/icondz.png" width="17" height="23">
+            <img slot="icon" src="../img/mine/icondz.png" width="17" height="23">
         </mt-cell>
         <div class="btn-bar">
             <mt-button type="primary" @click="logout" class="log-out">退出登录</mt-button>
@@ -38,7 +38,7 @@
         <div class="footer">
             <div class="foot-load">
                 <div class="load-left">
-                    <a href="#"><img src="../../static/img/mine/download.png" alt=""></a>
+                    <a href="#"><img src="../img/mine/download.png" alt=""></a>
                 </div>
                 <div class="load-right">
                     <a href="#">下载【怡康到家】手机app</a>
